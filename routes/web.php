@@ -14,3 +14,9 @@ Route::get('/Shop', function () {
 Route::get('/Product-Cart', function () {
     return view('shop.product-cart');
 });
+Route::get('/Contact', function () {
+    return view('contact');
+});
+Route::get('/Faq', function () {
+    return view('faq');
+});

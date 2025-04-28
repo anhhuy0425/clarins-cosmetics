@@ -29,7 +29,7 @@
                 <div class="row align-items-center">
                     <div class="col-5 col-sm-6 col-lg-3">
                         <div class="header-logo">
-                            <a href="index.html">
+                            <a href="/">
                                 <img class="logo-main" src="assets/images/logo.webp" width="95" height="68" alt="Logo" />
                             </a>
                         </div>
@@ -71,11 +71,11 @@
                                 <li class="has-submenu"><a href="account-login.html">Pages</a>
                                     <ul class="submenu-nav">
                                         <li><a href="account-login.html">My Account</a></li>
-                                        <li><a href="faq.html">Frequently Questions</a></li>
+                                        <li><a href="/Faq">Frequently Questions</a></li>
                                         <li><a href="page-not-found.html">Page Not Found</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="contact.html">Contact</a></li>
+                                <li><a href="/Contact">Contact</a></li>
                             </ul>
                         </div>
                     </div>
@@ -148,7 +148,7 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="widget-item">
                         <div class="widget-about">
-                            <a class="widget-logo" href="index.html">
+                            <a class="widget-logo" href="/">
                                 <img src="assets/images/logo.webp" width="95" height="68" alt="Logo">
                             </a>
                             <p class="desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been.</p>
@@ -160,12 +160,12 @@
                         <h4 class="widget-title">Information</h4>
                         <ul class="widget-nav">
                             <li><a href="/About">About us</a></li>
-                            <li><a href="contact.html">Contact</a></li>
-                            <li><a href="faq.html">Privacy</a></li>
+                            <li><a href="/Contact">Contact</a></li>
+                            <li><a href="/Faq">Privacy</a></li>
                             <li><a href="account-login.html">Login</a></li>
                             <li><a href="/Shop">Shop</a></li>
                             <li><a href="my-account.html">My Account</a></li>
-                            <li><a href="faq.html">FAQs</a></li>
+                            <li><a href="/Faq">FAQs</a></li>
                         </ul>
                     </div>
                 </div>
@@ -383,11 +383,11 @@
                 <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="#">Pages</a>
                     <ul>
                         <li><a href="account-login.html">My Account</a></li>
-                        <li><a href="faq.html">Frequently Questions</a></li>
+                        <li><a href="/Faq">Frequently Questions</a></li>
                         <li><a href="page-not-found.html">Page Not Found</a></li>
                     </ul>
                 </li>
-                <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="contact.html">Contact</a></li>
+                <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="/Contact">Contact</a></li>
             </ul>
         </div>
     </div>
