@@ -19,9 +19,6 @@
         </div>
     </div>
 </section>
-<!--== End Page Header Area Wrapper ==-->
-
-<!--== Start Funfact Area Wrapper ==-->
 <section class="funfact-area section-space">
     <div class="container">
         <div class="row mb-n6">
@@ -92,9 +89,6 @@
         </div>
     </div>
 </div>
-<!--== End Brand Logo Area Wrapper ==-->
-
-<!--== Start About Area Wrapper ==-->
 <section class="section-space pt-0 mb-n1">
     <div class="container">
         <div class="about-thumb">

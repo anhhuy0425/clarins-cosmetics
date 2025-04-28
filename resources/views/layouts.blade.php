@@ -60,7 +60,7 @@
                                         </li>
                                         <li><a href="#/" class="mega-title">Others Pages</a>
                                             <ul>
-                                                <li><a href="product-cart.html">Shopping Cart</a></li>
+                                                <li><a href="/Product-Cart">Shopping Cart</a></li>
                                                 <li><a href="product-checkout.html">Checkout</a></li>
                                                 <li><a href="product-wishlist.html">Wishlist</a></li>
                                                 <li><a href="product-compare.html">Compare</a></li>
@@ -334,7 +334,7 @@
             </li>
         </ul>
         <p class="cart-total"><span>Subtotal:</span><span class="amount">£89.99</span></p>
-        <a class="btn-total" href="product-cart.html">View cart</a>
+        <a class="btn-total" href="/Product-Cart">View cart</a>
         <a class="btn-total" href="product-checkout.html">Checkout</a>
     </div>
 </aside>
@@ -372,7 +372,7 @@
                         </li>
                         <li><a href="#" class="offcanvas-nav-item">Others Pages</a>
                             <ul>
-                                <li><a href="product-cart.html">Shopping Cart</a></li>
+                                <li><a href="/Product-Cart">Shopping Cart</a></li>
                                 <li><a href="product-checkout.html">Checkout</a></li>
                                 <li><a href="product-wishlist.html">Wishlist</a></li>
                                 <li><a href="product-compare.html">Compare</a></li>
