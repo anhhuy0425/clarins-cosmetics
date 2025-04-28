@@ -72,7 +72,6 @@
                                     <ul class="submenu-nav">
                                         <li><a href="account-login.html">My Account</a></li>
                                         <li><a href="/Faq">Frequently Questions</a></li>
-                                        <li><a href="page-not-found.html">Page Not Found</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="/Contact">Contact</a></li>
@@ -384,7 +383,6 @@
                     <ul>
                         <li><a href="account-login.html">My Account</a></li>
                         <li><a href="/Faq">Frequently Questions</a></li>
-                        <li><a href="page-not-found.html">Page Not Found</a></li>
                     </ul>
                 </li>
                 <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="/Contact">Contact</a></li>

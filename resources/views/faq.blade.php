@@ -1,5 +1,5 @@
-@include('layouts')
-@section("content")
+@extends('layouts')
+@section('content')
 <!--== Start Page Header Area Wrapper ==-->
 <nav aria-label="breadcrumb" class="breadcrumb-style1">
     <div class="container">
@@ -132,5 +132,4 @@
         </div>
     </div>
 </section>
-<!--== End Faq Area Wrapper ==-->
 @endsection
