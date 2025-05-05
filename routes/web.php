@@ -20,3 +20,7 @@ Route::get('/Contact', function () {
 Route::get('/Faq', function () {
     return view('faq');
 });
+Route::get('/register', [AuthController::class, 'showRegisterForm']);
+Route::post('/register', [AuthController::class, 'register']);
+Route::get('/', [AuthController::class, 'showLoginForm']);
+Route::post('/login', [AuthController::class, 'login']);
