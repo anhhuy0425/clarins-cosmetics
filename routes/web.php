@@ -1,26 +1,10 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
-
-Route::get('/', function () {
-    return view('home');
-});
-Route::get('/About', function () {
-    return view('about');
-});
-Route::get('/Shop', function () {
-    return view('shop.shop');
-});
-Route::get('/Product-Cart', function () {
-    return view('shop.product-cart');
-});
-Route::get('/Contact', function () {
-    return view('contact');
-});
-Route::get('/Faq', function () {
-    return view('faq');
-});
-Route::get('/register', [AuthController::class, 'showRegisterForm']);
-Route::post('/register', [AuthController::class, 'register']);
-Route::get('/', [AuthController::class, 'showLoginForm']);
-Route::post('/login', [AuthController::class, 'login']);
+use App\Http\Controllers\AuthController;
+Route::get('/home', [AuthController::class, 'home'])->name('home');
+Route::get('/About', [AuthController::class, 'about'])->name('about');
+Route::get('/Shop', [AuthController::class, 'shop'])->name('shop');
+Route::get('/Product-Cart', [AuthController::class, 'product_cart'])->name('product_cart');
+Route::get('/contact', [AuthController::class, 'contact'])->name('contact');
+Route::get('/Faq', [AuthController::class, 'Faq'])->name('Faq');
+Route::get('/Account_Login', [AuthController::class, 'Account_Login'])->name('Account_Login');

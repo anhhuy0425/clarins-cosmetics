@@ -1,58 +1,42 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\User;
 
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-    public function showRegisterForm()
+    public function home()
     {
-        return view('register');
+        return view('home');
     }
-    public function register(Request $request)
+    public function about()
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:6|confirmed',
-            'terms' => 'accepted',
-        ], [
-            'terms.accepted' => 'Bạn phải đồng ý với điều khoản.',
-        ]);
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-
-        ]);
-        Auth::login($user);
-        return redirect('/')->with('success', 'Đăng ký thành công!');
+        return view('about');
     }
-
-
-
-    public function showLoginForm()
+    public function shop()
     {
-        return view('login');
+        return view('shop.shop');
     }
-    public function login(Request $request)
+    public function product_cart()
     {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-        $credentials = $request->only('email', 'password');
-        if (Auth::attempt($credentials)) {
-
-            if(auth()->user()->is_admin == true)
-                return redirect('/admin')->with('success', 'Đăng nhập thành công!');
-            else
-                return redirect('/')->with('success', 'Đăng nhập thành công!');
-        }
-        return back()->withErrors([
-            'email' => 'Email hoặc mật khẩu không đúng.',
-        ])->withInput();
+        return view('shop.product-cart');
     }
+    public function contact()
+    {
+        return view('contact');
+    }
+    public function Faq()
+    {
+        return view('Faq');
+    }
+    public function Account_Login()
+    {
+        return view('Account_Login');
+    }
+
+
 }
