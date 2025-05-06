@@ -157,7 +157,7 @@
                             <li><a href="/Faq">Privacy</a></li>
                             <li><a href="/Account_Login">Login</a></li>
                             <li><a href="/Shop">Shop</a></li>
-                            <li><a href="my-account.html">My Account</a></li>
+                            <li><a href="/Account_Login">My Account</a></li>
                             <li><a href="/Faq">FAQs</a></li>
                         </ul>
                     </div>

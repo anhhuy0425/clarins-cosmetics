@@ -34,14 +34,14 @@
                                         </div>
 
                                         <div class="form-group d-flex align-items-center mb-14">
-                                            <a class="btn" href="my-account.html">Login</a>
+                                            <a class="btn" href="/Account_Login">Login</a>
 
                                             <div class="form-check ms-3">
                                                 <input type="checkbox" class="form-check-input" id="remember_pwsd">
                                                 <label class="form-check-label" for="remember_pwsd">Remember Me</label>
                                             </div>
                                         </div>
-                                        <a class="lost-password" href="my-account.html">Lost your Password?</a>
+                                        <a class="lost-password" href="/Account_Login">Lost your Password?</a>
                                     </form>
                                 </div>
                             </div>
@@ -74,7 +74,7 @@
 
                                         <div class="form-group">
                                             <p class="desc mb-4">Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our privacy policy.</p>
-                                            <a class="btn" href="my-account.html">Register</a>
+                                            <a class="btn" href="/Account_Login">Register</a>
                                         </div>
                                     </form>
                                 </div>
@@ -83,5 +83,4 @@
                     </div>
                 </div>
             </section>
-            <!--== End Account Area Wrapper ==-->
 @endsection
