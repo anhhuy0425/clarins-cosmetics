@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
-
+use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
@@ -19,7 +19,8 @@ class AuthController extends Controller
     }
     public function shop()
     {
-        return view('shop.shop');
+        $products = Product::paginate(9);
+        return view('shop.shop',compact('products'));
     }
     public function product_cart()
     {
