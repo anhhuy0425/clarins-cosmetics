@@ -42,25 +42,19 @@
                                 <li><a href="/About">about</a></li>
                                 <li class="has-submenu position-static"><a href="/Shop">shop</a>
                                     <ul class="submenu-nav-mega">
-                                        <li><a href="#/" class="mega-title">Shop Layout</a>
+                                        <li><a href="#/" class="mega-title">Product</a>
                                             <ul>
-                                                <li><a href="/Shop">Shop 3 Column</a></li>
-                                                <li><a href="product-four-columns.html">Shop 4 Column</a></li>
-                                                <li><a href="product-left-sidebar.html">Shop Left Sidebar</a></li>
-                                                <li><a href="product-right-sidebar.html">Shop Right Sidebar</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="#/" class="mega-title">Single Product</a>
-                                            <ul>
-                                                <li><a href="product-details-normal.html">Single Product Normal</a></li>
-                                                <li><a href="product-details.html">Single Product Variable</a></li>
-                                                <li><a href="product-details-group.html">Single Product Group</a></li>
-                                                <li><a href="product-details-affiliate.html">Single Product Affiliate</a></li>
+                                                <li><a href="#">FACE</a></li>
+                                                <li><a href="#">BODY</a></li>
+                                                <li><a href="#">SUNSCREEN</a></li>
+                                                <li><a href="#">HAIR</a></li>
+                                                <li><a href="#">MAKEUP</a></li>
+                                                <li><a href="#">PERFUMES</a></li>
                                             </ul>
                                         </li>
                                         <li><a href="#/" class="mega-title">Others Pages</a>
                                             <ul>
-                                                <li><a href="product-cart.html">Shopping Cart</a></li>
+                                                <li><a href="/Product-Cart">Shopping Cart</a></li>
                                                 <li><a href="product-checkout.html">Checkout</a></li>
                                                 <li><a href="product-wishlist.html">Wishlist</a></li>
                                                 <li><a href="product-compare.html">Compare</a></li>
@@ -68,13 +62,13 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="has-submenu"><a href="account-login.html">Pages</a>
+                                <li class="has-submenu"><a href="/Account_Login">Pages</a>
                                     <ul class="submenu-nav">
-                                        <li><a href="account-login.html">My Account</a></li>
+                                        <li><a href="/Account_Login">My Account</a></li>
                                         <li><a href="/Faq">Frequently Questions</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="/Contact">Contact</a></li>
+                                <li><a href="/contact">Contact</a></li>
                             </ul>
                         </div>
                     </div>
@@ -108,7 +102,7 @@
                 </span>
                             </button>
 
-                            <a class="header-action-btn" href="account-login.html">
+                            <a class="header-action-btn" href="/Account_Login">
                                 <span class="icon">
                   <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                     <rect class="icon-rect" width="30" height="30" fill="url(#pattern3)"/>
@@ -199,52 +193,43 @@
                 <div class="container">
                     <div class="row g-3 g-sm-6">
                         <div class="col-6 col-lg-4 col-lg-2 col-xl-2">
-                            <!--== Start Product Category Item ==-->
-                            <a href="/Shop" class="product-category-item">
-                                <img class="icon" src="assets/images/shop/category/1.webp" width="70" height="80" alt="Image-HasTech">
-                                <h3 class="title">Hare care</h3>
+                            <a href="product.html" class="product-category-item">
+                                <img class="icon" src="assets/images/shop/category/face.webp" width="70" height="80" alt="Image-HasTech">
+                                <h3 class="title">Face</h3>
                                 <span class="flag-new">new</span>
                             </a>
-                            <!--== End Product Category Item ==-->
                         </div>
                         <div class="col-6 col-lg-4 col-lg-2 col-xl-2">
-                            <!--== Start Product Category Item ==-->
-                            <a href="/Shop" class="product-category-item" data-bg-color="#FFEDB4">
-                                <img class="icon" src="assets/images/shop/category/2.webp" width="80" height="80" alt="Image-HasTech">
-                                <h3 class="title">Skin care</h3>
+                            <a href="product.html" class="product-category-item" data-bg-color="#FFEDB4">
+                                <img class="icon" src="assets/images/shop/category/body.png" width="80" height="80" alt="Image-HasTech">
+                                <h3 class="title">Body</h3>
                             </a>
-                            <!--== End Product Category Item ==-->
                         </div>
                         <div class="col-6 col-lg-4 col-lg-2 col-xl-2 mt-lg-0 mt-sm-6 mt-4">
+                            <a href="product.html" class="product-category-item" data-bg-color="#DFE4FF">
+                                <img class="icon" src="assets/images/shop/category/Sunscreen.webp" width="80" height="80" alt="Image-HasTech">
+                                <h3 class="title">Sunscreen</h3>
+                            </a>
+                        </div>
+                        <div class="col-6 col-lg-4 col-lg-2 col-xl-2 mt-lg-0 mt-sm-6 mt-4">
+                            <a href="product.html" class="product-category-item" data-bg-color="#DFE4FF">
+                                <img class="icon" src="assets/images/shop/category/hair.png" width="80" height="80" alt="Image-HasTech">
+                                <h3 class="title">Hair</h3>
+                            </a>
+                        </div>
+                        <div class="col-6 col-lg-4 col-lg-2 col-xl-2 mt-xl-0 mt-sm-6 mt-4">
                             <!--== Start Product Category Item ==-->
-                            <a href="/Shop" class="product-category-item" data-bg-color="#DFE4FF">
-                                <img class="icon" src="assets/images/shop/category/3.webp" width="80" height="80" alt="Image-HasTech">
-                                <h3 class="title">Lip stick</h3>
+                            <a href="product.html" class="product-category-item" data-bg-color="#FFDAE0">
+                                <img class="icon" src="assets/images/shop/category/MakeUp.webp" width="80" height="80" alt="Image-HasTech">
+                                <h3 class="title">MakeUp</h3>
                             </a>
                             <!--== End Product Category Item ==-->
                         </div>
                         <div class="col-6 col-lg-4 col-lg-2 col-xl-2 mt-xl-0 mt-sm-6 mt-4">
                             <!--== Start Product Category Item ==-->
-                            <a href="/Shop" class="product-category-item" data-bg-color="#FFEACC">
-                                <img class="icon" src="assets/images/shop/category/4.webp" width="80" height="80" alt="Image-HasTech">
-                                <h3 class="title">Face skin</h3>
-                                <span data-bg-color="#835BF4" class="flag-new">sale</span>
-                            </a>
-                            <!--== End Product Category Item ==-->
-                        </div>
-                        <div class="col-6 col-lg-4 col-lg-2 col-xl-2 mt-xl-0 mt-sm-6 mt-4">
-                            <!--== Start Product Category Item ==-->
-                            <a href="/Shop" class="product-category-item" data-bg-color="#FFDAE0">
-                                <img class="icon" src="assets/images/shop/category/5.webp" width="80" height="80" alt="Image-HasTech">
-                                <h3 class="title">Blusher</h3>
-                            </a>
-                            <!--== End Product Category Item ==-->
-                        </div>
-                        <div class="col-6 col-lg-4 col-lg-2 col-xl-2 mt-xl-0 mt-sm-6 mt-4">
-                            <!--== Start Product Category Item ==-->
-                            <a href="/Shop" class="product-category-item" data-bg-color="#FFF3DA">
-                                <img class="icon" src="assets/images/shop/category/6.webp" width="80" height="80" alt="Image-HasTech">
-                                <h3 class="title">Natural</h3>
+                            <a href="product.html" class="product-category-item" data-bg-color="#FFF3DA">
+                                <img class="icon" src="assets/images/shop/category/Ferfumes.png" width="80" height="80" alt="Image-HasTech">
+                                <h3 class="title">Ferfumes</h3>
                             </a>
                             <!--== End Product Category Item ==-->
                         </div>
@@ -880,9 +865,9 @@
                                 <h4 class="widget-title">Information</h4>
                                 <ul class="widget-nav">
                                     <li><a href="/About">About us</a></li>
-                                    <li><a href="/Contact">Contact</a></li>
+                                    <li><a href="/contact">Contact</a></li>
                                     <li><a href="/Faq">Privacy</a></li>
-                                    <li><a href="account-login.html">Login</a></li>
+                                    <li><a href="/Account_Login">Login</a></li>
                                     <li><a href="/Shop">Shop</a></li>
                                     <li><a href="my-account.html">My Account</a></li>
                                     <li><a href="/Faq">FAQs</a></li>
@@ -1097,20 +1082,14 @@
                         <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="/About">about</a></li>
                         <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="#">shop</a>
                             <ul>
-                                <li><a href="#" class="offcanvas-nav-item">Shop Layout</a>
+                                <li><a href="#" class="offcanvas-nav-item">Product</a>
                                     <ul>
-                                        <li><a href="/Shop">Shop 3 Column</a></li>
-                                        <li><a href="product-four-columns.html">Shop 4 Column</a></li>
-                                        <li><a href="product-left-sidebar.html">Shop Left Sidebar</a></li>
-                                        <li><a href="product-right-sidebar.html">Shop Right Sidebar</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#" class="offcanvas-nav-item">Single Product</a>
-                                    <ul>
-                                        <li><a href="product-details-normal.html">Single Product Normal</a></li>
-                                        <li><a href="product-details.html">Single Product Variable</a></li>
-                                        <li><a href="product-details-group.html">Single Product Group</a></li>
-                                        <li><a href="product-details-affiliate.html">Single Product Affiliate</a></li>
+                                        <li><a href="#">FACE</a></li>
+                                        <li><a href="#">BODY</a></li>
+                                        <li><a href="#">SUNSCREEN</a></li>
+                                        <li><a href="#">HAIR</a></li>
+                                        <li><a href="#">MAKEUP</a></li>
+                                        <li><a href="#">PERFUMES</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="#" class="offcanvas-nav-item">Others Pages</a>
@@ -1123,25 +1102,13 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="#">Blog</a>
-                            <ul>
-                                <li><a class="offcanvas-nav-item" href="#">Blog Layout</a>
-                                    <ul>
-                                        <li><a href="blog.html">Blog Grid</a></li>
-                                        <li><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>
-                                        <li><a href="blog-right-sidebar.html">Blog Right Sidebar</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="blog-details.html">Blog Details</a></li>
-                            </ul>
-                        </li>
                         <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="#">Pages</a>
                             <ul>
-                                <li><a href="account-login.html">My Account</a></li>
+                                <li><a href="/Account_Login">My Account</a></li>
                                 <li><a href="/Faq">Frequently Questions</a></li>
                             </ul>
                         </li>
-                        <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="/Contact">Contact</a></li>
+                        <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="/contact">Contact</a></li>
                     </ul>
                 </div>
             </div>
