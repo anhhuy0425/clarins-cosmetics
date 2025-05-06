@@ -63,9 +63,6 @@
                     </div>
                 </div>
             </div>
-            <!--== End Shop Top Bar Area Wrapper ==-->
-
-            <!--== Start Product Category Area Wrapper ==-->
             <section class="section-space pb-0">
                 <div class="container">
                     <div class="row g-3 g-sm-6">
@@ -113,9 +110,6 @@
                     </div>
                 </div>
             </section>
-            <!--== End Product Category Area Wrapper ==-->
-
-            <!--== Start Product Area Wrapper ==-->
             <section class="section-space">
                 <div class="container">
                     <div class="row mb-n4 mb-sm-n10 g-3 g-sm-6">
@@ -168,10 +162,8 @@
                                     </button>
                                 </div>
                             </div>
-                            <!--== End prPduct Item ==-->
                         </div>
                         <div class="col-6 col-lg-4 mb-4 mb-sm-8">
-                            <!--== Start Product Item ==-->
                             <div class="product-item">
                                 <div class="product-thumb">
                                     <a class="d-block" href="product-details.html">
