@@ -76,11 +76,17 @@ class AuthController extends Controller
             if(auth()->user()->is_admin == true)
                 return redirect('/admin')->with('success', 'Đăng nhập thành công!');
             else
-                return redirect('/home')->with('success', 'Đăng nhập thành công!');
+                return redirect('/')->with('success', 'Đăng nhập thành công!');
         }
         return back()->withErrors([
             'email' => 'Email hoặc mật khẩu không đúng.',
         ])->withInput();
     }
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/')->with('success', 'Bạn đã đăng xuất.');
+    }
 
 }
+

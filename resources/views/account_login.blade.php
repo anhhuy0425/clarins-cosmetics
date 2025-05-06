@@ -26,12 +26,12 @@
                                         @csrf
                                         <div class="form-group mb-6">
                                             <label for="login_username">Email Address <sup>*</sup></label>
-                                            <input type="email" id="login_username">
+                                            <input type="email" id="login_username" name="email">
                                         </div>
 
                                         <div class="form-group mb-6">
                                             <label for="login_pwsd">Password <sup>*</sup></label>
-                                            <input type="password" id="login_pwsd">
+                                            <input type="password" name="password" id="login_pwsd">
                                         </div>
 
                                         @if ($errors->any())
