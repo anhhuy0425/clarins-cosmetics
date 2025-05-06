@@ -62,9 +62,9 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="has-submenu"><a href="/Account_Login">Pages</a>
+                                <li class="has-submenu"><a href="/login">Pages</a>
                                     <ul class="submenu-nav">
-                                        <li><a href="/Account_Login">My Account</a></li>
+                                        <li><a href="/login">My Account</a></li>
                                         <li><a href="/Faq">Frequently Questions</a></li>
                                     </ul>
                                 </li>
@@ -102,7 +102,7 @@
                 </span>
                             </button>
 
-                            <a class="header-action-btn" href="/Account_Login">
+                            <a class="header-action-btn" href="/login">
                                 <span class="icon">
                   <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                     <rect class="icon-rect" width="30" height="30" fill="url(#pattern3)"/>
@@ -155,9 +155,9 @@
                             <li><a href="/About">About us</a></li>
                             <li><a href="/contact">Contact</a></li>
                             <li><a href="/Faq">Privacy</a></li>
-                            <li><a href="/Account_Login">Login</a></li>
+                            <li><a href="/login">Login</a></li>
                             <li><a href="/Shop">Shop</a></li>
-                            <li><a href="/Account_Login">My Account</a></li>
+                            <li><a href="/login">My Account</a></li>
                             <li><a href="/Faq">FAQs</a></li>
                         </ul>
                     </div>
@@ -369,7 +369,7 @@
                 </li>
                 <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="#">Pages</a>
                     <ul>
-                        <li><a href="/Account_Login">My Account</a></li>
+                        <li><a href="/login">My Account</a></li>
                         <li><a href="/Faq">Frequently Questions</a></li>
                     </ul>
                 </li>
