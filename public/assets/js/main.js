@@ -276,43 +276,12 @@
 
 })(window.jQuery);
 
-$(document).on('click', '.add-to-wishlist', function (e) {
-    e.preventDefault();
-
-    var productId = $(this).data('product-id');
-    var button = $(this);
-
-    // Gửi yêu cầu AJAX để thêm sản phẩm vào danh sách yêu thích
-    $.ajax({
-        url: '/wishlist',  // Địa chỉ route để thêm vào danh sách yêu thích
-        method: 'POST',
-        data: {
-            product_id: productId,
-            _token: $('meta[name="csrf-token"]').attr('content')  // CSRF token để bảo vệ bảo mật
-        },
-        success: function(response) {
-            if (response.success) {
-                button.text('Added to Wishlist').prop('disabled', true);  // Cập nhật UI
-                // Hiển thị thông báo thành công nếu cần
-                alert('Product added to your wishlist!');
-            } else {
-                alert('There was an error adding the product to your wishlist.');
-            }
-        },
-        error: function() {
-            alert('Something went wrong.');
-        }
-    });
-});
-
-
 $(document).on('click', '.action-btn-wishlist', function (e) {
     e.preventDefault();
 
     var productId = $(this).data('product-id');
     var button = $(this);
 
-    // Gửi yêu cầu AJAX để thêm sản phẩm vào danh sách yêu thích
     $.ajax({
         url: '/wishlist',
         method: 'POST',
@@ -321,16 +290,20 @@ $(document).on('click', '.action-btn-wishlist', function (e) {
             _token: $('meta[name="csrf-token"]').attr('content')
         },
         success: function(response) {
-            if (response.success) {
+            if (response.added) {
                 button.find('i').removeClass('fa-heart-o').addClass('fa-heart');
-                alert('Product added to your wishlist!');
-            } else {
-                alert('There was an error adding the product to your wishlist. Please log in.');
+                alert('Đã thêm vào danh sách yêu thích!');
+            } else if (response.removed) {
+                button.find('i').removeClass('fa-heart').addClass('fa-heart-o');
+                alert('Đã xóa khỏi danh sách yêu thích!');
             }
         },
-        error: function() {
-            alert('There was an error adding the product to your wishlist. Please log in.');
-            window.location.href = '/login';
+        error: function(xhr) {
+            if (xhr.status === 401) {
+                window.location.href = '/login';
+            } else {
+                alert('Có lỗi xảy ra!');
+            }
         }
     });
 });

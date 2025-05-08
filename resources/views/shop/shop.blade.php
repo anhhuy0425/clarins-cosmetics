@@ -119,6 +119,7 @@
                         $imagePath = Str::startsWith($product->image, 'http')
                             ? $product->image
                             : asset('assets/images/shop/' . $product->image);
+                        $isWished = Auth::check() && \App\Models\Wishlist::where('user_id', Auth::id())->where('product_id', $product->id)->exists();
                          @endphp
                         <div class="col-6 col-lg-4 mb-4 mb-sm-8">
                             <div class="product-item">
@@ -134,8 +135,8 @@
                                         <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
                                             <span>Add to cart</span>
                                         </button>
-                                        <button type="button" class="product-action-btn action-btn-wishlist" data-product-id="{{ $product->id }}" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
-                                            <i class="fa {{ Auth::check() && App\Models\Wishlist::where('user_id', Auth::id())->where('product_id', $product->id)->exists() ? 'fa-heart' : 'fa-heart-o' }}"></i>
+                                        <button type="button" class="product-action-btn action-btn-wishlist" data-product-id="{{ $product->id }}">
+                                            <i class="fa {{ $isWished ? 'fa-heart' : 'fa-heart-o' }}"></i>
                                         </button>
 
                                     </div>

@@ -19,32 +19,33 @@ class ProductController extends Controller
         return view('product-details', compact('product'));
     }
 
-    public function addWishlist(Request $request)
+    public function toggleWishlist(Request $request)
 {
-    // Kiểm tra người dùng đã đăng nhập hay chưa
     if (!Auth::check()) {
-        return redirect()->route('/login')->with('error', 'You need to login first.');
+        // Nếu là request AJAX thì trả về lỗi 401
+        if ($request->ajax()) {
+            return response()->json(['not_logged_in' => true], 401);
+        }
+        // Nếu là request bình thường thì chuyển về login
+        return redirect()->route('login')->with('error', 'You need to login first.');
     }
 
     $user = Auth::user();
     $productId = $request->product_id;
 
-    // Kiểm tra xem sản phẩm đã có trong danh sách yêu thích chưa
-    $exists = Wishlist::where('user_id', $user->id)->where('product_id', $productId)->exists();
+    $wishlist = Wishlist::where('user_id', $user->id)->where('product_id', $productId)->first();
 
-    if ($exists) {
-        return response()->json(['success' => false, 'message' => 'Product is already in your wishlist']);
+    if ($wishlist) {
+        $wishlist->delete();
+        return response()->json(['success' => true, 'removed' => true, 'product_id' => $productId]);
     }
 
-    // Thêm sản phẩm vào danh sách yêu thích
-    $wishlist = new Wishlist();
-    $wishlist->user_id = $user->id;
-    $wishlist->product_id = $productId;
-    $wishlist->save();
+    Wishlist::create([
+        'user_id' => $user->id,
+        'product_id' => $productId,
+    ]);
 
-    // Trả về phản hồi để UI cập nhật
-    return response()->json(['success' => true, 'message' => 'Product added to wishlist', 'product_id' => $productId]);
+    return response()->json(['success' => true, 'added' => true, 'product_id' => $productId]);
 }
-
 
 }
