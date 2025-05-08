@@ -134,9 +134,10 @@
                                         <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
                                             <span>Add to cart</span>
                                         </button>
-                                        <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
-                                            <i class="fa fa-heart-o"></i>
+                                        <button type="button" class="product-action-btn action-btn-wishlist" data-product-id="{{ $product->id }}" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
+                                            <i class="fa {{ Auth::check() && App\Models\Wishlist::where('user_id', Auth::id())->where('product_id', $product->id)->exists() ? 'fa-heart' : 'fa-heart-o' }}"></i>
                                         </button>
+
                                     </div>
                                 </div>
                                 <div class="product-info">
@@ -161,7 +162,7 @@
                                     <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
                                         <i class="fa fa-expand"></i>
                                     </button>
-                                    <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
+                                    <button type="button" class="product-action-btn action-btn-wishlist" data-product-id="{{ $product->id }}" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
                                         <i class="fa fa-heart-o"></i>
                                     </button>
                                     <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">

@@ -10,7 +10,7 @@
         bgSource = element.data('bg-img');
       element.css('background-image', 'url(' + bgSource + ')');
     });
-    
+
     const Bgcolorcl = $("[data-bg-color]");
     Bgcolorcl.each(function (index, elem) {
       let element = $(elem),
@@ -275,3 +275,64 @@
   });
 
 })(window.jQuery);
+
+$(document).on('click', '.add-to-wishlist', function (e) {
+    e.preventDefault();
+
+    var productId = $(this).data('product-id');
+    var button = $(this);
+
+    // Gửi yêu cầu AJAX để thêm sản phẩm vào danh sách yêu thích
+    $.ajax({
+        url: '/wishlist',  // Địa chỉ route để thêm vào danh sách yêu thích
+        method: 'POST',
+        data: {
+            product_id: productId,
+            _token: $('meta[name="csrf-token"]').attr('content')  // CSRF token để bảo vệ bảo mật
+        },
+        success: function(response) {
+            if (response.success) {
+                button.text('Added to Wishlist').prop('disabled', true);  // Cập nhật UI
+                // Hiển thị thông báo thành công nếu cần
+                alert('Product added to your wishlist!');
+            } else {
+                alert('There was an error adding the product to your wishlist.');
+            }
+        },
+        error: function() {
+            alert('Something went wrong.');
+        }
+    });
+});
+
+
+$(document).on('click', '.action-btn-wishlist', function (e) {
+    e.preventDefault();
+
+    var productId = $(this).data('product-id');
+    var button = $(this);
+
+    // Gửi yêu cầu AJAX để thêm sản phẩm vào danh sách yêu thích
+    $.ajax({
+        url: '/wishlist',
+        method: 'POST',
+        data: {
+            product_id: productId,
+            _token: $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function(response) {
+            if (response.success) {
+                button.find('i').removeClass('fa-heart-o').addClass('fa-heart');
+                alert('Product added to your wishlist!');
+            } else {
+                alert('There was an error adding the product to your wishlist. Please log in.');
+            }
+        },
+        error: function() {
+            alert('There was an error adding the product to your wishlist. Please log in.');
+            window.location.href = '/login';
+        }
+    });
+});
+
+

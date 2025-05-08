@@ -89,5 +89,8 @@ class AuthController extends Controller
         return redirect('/')->with('success', 'Bạn đã đăng xuất.');
     }
 
+
+    
+
 }
 

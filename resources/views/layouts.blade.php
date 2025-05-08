@@ -4,7 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Brancy - Cosmetic & Beauty Salon Website Template</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>Clarins Cosmetics</title>
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="Brancy - Cosmetic & Beauty Salon Website Template">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -20,6 +21,7 @@
     <link rel="stylesheet" href="assets/css/plugins/fancybox.min.css">
     <link rel="stylesheet" href="assets/css/plugins/nice-select.css">
     <link rel="stylesheet" href="./assets/css/style.min.css">
+
 </head>
 
 <body>

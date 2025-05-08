@@ -14,4 +14,5 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/Shop', [ProductController::class, 'index'])->name('shop.index');
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('product_details');
+Route::post('/wishlist', [ProductController::class, 'addWishlist'])->name('wishlist.add');
 
