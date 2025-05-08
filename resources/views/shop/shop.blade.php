@@ -174,34 +174,17 @@
                     </div>
                 </div>
                         <div class="col-12">
-                            <ul class="pagination justify-content-center me-auto ms-auto mt-5 mb-0 mb-sm-10">
-                                <li class="page-item">
-                                    <a class="page-link previous" href="product.html" aria-label="Previous">
-                                        <span class="fa fa-chevron-left" aria-hidden="true"></span>
-                                    </a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="product.html">01</a></li>
-                                <li class="page-item"><a class="page-link" href="product.html">02</a></li>
-                                <li class="page-item"><a class="page-link" href="product.html">03</a></li>
-                                <li class="page-item">  <a class="page-link" href="product.html">....</a></li>
-                                <li class="page-item">
-                                    <a class="page-link next" href="product.html" aria-label="Next">
-                                        <span class="fa fa-chevron-right" aria-hidden="true"></span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="col-12">
-                            <div class="pagination justify-content-center me-auto ms-auto mt-5 mb-0 mb-sm-10">
+                            <li>
+                                <div class="pagination justify-content-center me-auto ms-auto mt-5 mb-0 mb-sm-10">
                                 {{ $products->links('pagination::bootstrap-5') }}
-                            </div>
+                                </div>
+                            </li>
                         </div>
 
             </section>
             <section>
                 <div class="container">
-                    <a href="product.html" class="product-banner-item">
+                    <a href="/Shop" class="product-banner-item">
                         <img src="assets/images/shop/banner/7.webp" width="1170" height="240" alt="Image-HasTech">
                     </a>>
                 </div>

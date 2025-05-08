@@ -228,11 +228,9 @@
             </div>
         </div>
     </section>
-    <!--== End Product Details Area Wrapper ==-->
 
-    <!--== Start Product Banner Area Wrapper ==-->
     <div class="container">
-        <!--== Start Product Category Item ==-->
+
         <a href="product.html" class="product-banner-item">
             <img src="assets/images/shop/banner/7.webp" width="1170" height="240" alt="Image-HasTech">
         </a>
