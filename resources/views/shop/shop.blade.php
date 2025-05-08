@@ -135,10 +135,9 @@
                                         <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
                                             <span>Add to cart</span>
                                         </button>
-                                        <button type="button" class="product-action-btn action-btn-wishlist" data-product-id="{{ $product->id }}">
+                                        <button type="button" class="product-action-btn action-btn-wishlist"data-product-id="{{ $product->id }}">
                                             <i class="fa {{ $isWished ? 'fa-heart' : 'fa-heart-o' }}"></i>
                                         </button>
-
                                     </div>
                                 </div>
                                 <div class="product-info">

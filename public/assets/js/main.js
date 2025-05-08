@@ -292,10 +292,10 @@ $(document).on('click', '.action-btn-wishlist', function (e) {
         success: function(response) {
             if (response.added) {
                 button.find('i').removeClass('fa-heart-o').addClass('fa-heart');
-                alert('Đã thêm vào danh sách yêu thích!');
+                alert('Added to wishlist!');
             } else if (response.removed) {
                 button.find('i').removeClass('fa-heart').addClass('fa-heart-o');
-                alert('Đã xóa khỏi danh sách yêu thích!');
+                alert('Deleted to wishlist!');
             }
         },
         error: function(xhr) {

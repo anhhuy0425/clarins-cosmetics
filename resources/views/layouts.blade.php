@@ -196,7 +196,7 @@
 </footer>
 <div id="scroll-to-top" class="scroll-to-top"><span class="fa fa-angle-up"></span></div>
 
-<aside class="product-action-modal modal fade" id="action-WishlistModal" tabindex="-1" aria-hidden="true">
+{{-- <aside class="product-action-modal modal fade" id="action-WishlistModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
     @isset($product)
         <div class="modal-content">
@@ -228,7 +228,7 @@
         </div>
     </div>
     @endisset
-</aside>
+</aside> --}}
 
 <aside class="product-action-modal modal fade" id="action-CartAddModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
