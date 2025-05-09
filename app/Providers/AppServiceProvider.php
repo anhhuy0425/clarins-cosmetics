@@ -3,22 +3,38 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Cart;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
-    public function register(): void
+    public function register()
     {
         //
     }
 
-    /**
-     * Bootstrap any application services.
-     */
-    public function boot(): void
+    public function boot()
     {
-        //
+        View::composer('*', function ($view) {
+            if (Auth::check()) {
+                $cartItems = Cart::with('product')->where('user_id', Auth::id())->get();
+            } else {
+                $sessionCart = session()->get('cart', []);
+                $cartItems = collect();
+
+                foreach ($sessionCart as $item) {
+                    $cartItems->push((object)[
+                        'product' => (object)[
+                            'name' => $item['name'] ?? 'Sản phẩm',
+                            'price' => $item['price'] ?? 0,
+                        ],
+                        'quantity' => $item['quantity'] ?? 1,
+                    ]);
+                }
+            }
+
+            $view->with('cartItems', $cartItems);
+        });
     }
 }

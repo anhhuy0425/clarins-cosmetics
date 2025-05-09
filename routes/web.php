@@ -18,5 +18,6 @@ Route::get('/Shop', [ProductController::class, 'index'])->name('shop.index');
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('product_details');
 Route::post('/wishlist', [WishlistController::class, 'toggleWishlist']);
 Route::post('/cart/add/{id}', [CartsController::class, 'addToCart'])->name('cart.add');
-
+Route::get('/cart', [CartsController::class, 'showCart']);
+Route::delete('/cart/remove/{productId}', [CartsController::class, 'removeFromCart'])->name('cart.remove');
 
