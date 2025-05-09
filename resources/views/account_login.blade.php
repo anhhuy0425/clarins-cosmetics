@@ -35,12 +35,12 @@
                                         </div>
 
                                         @if ($errors->any())
-                  <div class="alert alert-danger">
-                      @foreach ($errors->all() as $err)
-                          <p>{{ $err }}</p>
-                      @endforeach
-                  </div>
-                 @endif
+                                                <div class="alert alert-danger">
+                                                        @foreach ($errors->all() as $err)
+                                                        <p>{{ $err }}</p>
+                                                        @endforeach
+                                                </div>
+                                         @endif
 
                                         <div class="form-group d-flex align-items-center mb-14">
                                             <button type="submit" class="btn">Login</button>
@@ -49,7 +49,6 @@
                                                 <label class="form-check-label" for="remember_pwsd">Remember Me</label>
                                             </div>
                                         </div>
-
                                     </form>
                                 </div>
                             </div>
@@ -78,7 +77,7 @@
                                         </div>
                                         <div class="form-group mb-6">
                                             <label for="register_password">Password<sup>*</sup></label>
-                                            <input type="password" id="register_address" name="password" required><br>
+                                            <input type="password" id="register_password" name="password" required><br>
                                         </div>
                                         <div class="form-group mb-6">
                                             <label class="form-label" for="password_confirmation" >Repeat your password</label>

@@ -24,7 +24,6 @@ return new class extends Migration
             $table->string('payment_method');
             $table->unsignedBigInteger('shipping_rule_id')->nullable();
             $table->timestamps();
-
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('voucher_id')->references('id')->on('vouchers')->nullOnDelete();
         });

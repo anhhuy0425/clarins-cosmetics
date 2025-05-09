@@ -19,7 +19,6 @@ return new class extends Migration
             $table->enum('shipping_status', ['success', 'failed', 'pending'])->default('pending');
             $table->timestamp('paid_at')->nullable();
             $table->timestamps();
-
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
         });
     }

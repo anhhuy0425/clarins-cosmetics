@@ -40,6 +40,7 @@ class AuthController extends Controller
     }
     public function register(Request $request)
     {
+        // dd($request->all());
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
@@ -52,8 +53,7 @@ class AuthController extends Controller
             'email' => $request->email,
             'address' => $request->address,
             'phone' => $request->phone,
-            'password' => Hash::make($request->password),
-
+            'password' => Hash::make($request->password)
         ]);
         Auth::login($user);
         return redirect('/')->with('success', 'Đăng ký thành công!');
@@ -70,19 +70,40 @@ class AuthController extends Controller
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
-        ]);
+    ]);
+
         $credentials = $request->only('email', 'password');
+
         if (Auth::attempt($credentials)) {
 
-            if(auth()->user()->is_admin == true)
+        // ✅ Sau khi đăng nhập, chuyển session cart vào DB
+            if (session()->has('cart')) {
+                foreach (session('cart') as $productId => $details) {
+                    \App\Models\Cart::updateOrCreate(
+                        [
+                            'user_id' => auth()->id(),
+                            'product_id' => $productId
+                        ],
+                        [
+                            'quantity' => $details['quantity']
+                        ]
+                    );
+                }
+                session()->forget('cart');
+            }
+
+            // ✅ Chuyển trang theo vai trò
+            if (auth()->user()->is_admin == true)
                 return redirect('/admin')->with('success', 'Đăng nhập thành công!');
             else
                 return redirect('/')->with('success', 'Đăng nhập thành công!');
         }
+
         return back()->withErrors([
             'email' => 'Email hoặc mật khẩu không đúng.',
         ])->withInput();
     }
+
     public function logout()
     {
         Auth::logout();
@@ -90,7 +111,7 @@ class AuthController extends Controller
     }
 
 
-    
+
 
 }
 

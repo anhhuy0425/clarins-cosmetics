@@ -101,12 +101,10 @@
                             <!--== End Product Category Item ==-->
                         </div>
                         <div class="col-6 col-lg-4 col-lg-2 col-xl-2 mt-xl-0 mt-sm-6 mt-4">
-                            <!--== Start Product Category Item ==-->
                             <a href="product.html" class="product-category-item" data-bg-color="#FFF3DA">
                                 <img class="icon" src="assets/images/shop/category/Ferfumes.png" width="80" height="80" alt="Image-HasTech">
                                 <h3 class="title">Ferfumes</h3>
                             </a>
-                            <!--== End Product Category Item ==-->
                         </div>
                     </div>
                 </div>
@@ -132,10 +130,10 @@
                                         <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
                                             <i class="fa fa-expand"></i>
                                         </button>
-                                        <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
+                                        <button type="button" class="product-action-btn action-btn-cart" data-product-id="{{ $product->id }}" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
                                             <span>Add to cart</span>
                                         </button>
-                                        <button type="button" class="product-action-btn action-btn-wishlist"data-product-id="{{ $product->id }}">
+                                        <button type="button" class="product-action-btn action-btn-wishlist" data-product-id="{{ $product->id }}">
                                             <i class="fa {{ $isWished ? 'fa-heart' : 'fa-heart-o' }}"></i>
                                         </button>
                                     </div>
@@ -165,7 +163,7 @@
                                     <button type="button" class="product-action-btn action-btn-wishlist" data-product-id="{{ $product->id }}" data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
                                         <i class="fa fa-heart-o"></i>
                                     </button>
-                                    <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
+                                     <button type="submit" class="product-action-btn action-btn-cart" data-product-id="{{ $product->id }}" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
                                         <span>Add to cart</span>
                                     </button>
                                 </div>

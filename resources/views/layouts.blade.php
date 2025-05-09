@@ -23,7 +23,6 @@
     <link rel="stylesheet" href="./assets/css/style.min.css">
 
 </head>
-
 <body>
     <div class="wrapper">
         <header class="header-area sticky-header">
@@ -196,9 +195,10 @@
 </footer>
 <div id="scroll-to-top" class="scroll-to-top"><span class="fa fa-angle-up"></span></div>
 
+
+@isset($product)
 {{-- <aside class="product-action-modal modal fade" id="action-WishlistModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-    @isset($product)
         <div class="modal-content">
             <div class="modal-body">
                 <div class="product-action-view-content">
@@ -227,7 +227,6 @@
             </div>
         </div>
     </div>
-    @endisset
 </aside> --}}
 
 <aside class="product-action-modal modal fade" id="action-CartAddModal" tabindex="-1" aria-hidden="true">
@@ -235,6 +234,11 @@
         <div class="modal-content">
             <div class="modal-body">
                 <div class="product-action-view-content">
+                    @php
+                            $imagePath = Str::startsWith($product->image, 'http')
+                            ? $product->image
+                            : asset('assets/images/shop/' . $product->image);
+                    @endphp
                     <button type="button" class="btn-close" data-bs-dismiss="modal">
                         <i class="fa fa-times"></i>
                     </button>
@@ -243,15 +247,20 @@
                     </div>
                     <div class="modal-action-product">
                         <div class="thumb">
-                            <img src="assets/images/shop/modal1.webp" alt="Organic Food Juice" width="466" height="320">
+                            <a class="d-block" href="{{ route('product_details', $product->id) }}">
+                                <img src="{{ $imagePath }}" width="370" height="450" alt="{{ $product->product_name }}">
+                            </a>
                         </div>
-                        <h4 class="product-name"><a href="product-details.html">Readable content DX22</a></h4>
+                        <h4 class="title">
+                            <a href="{{ route('product_details', $product->id) }}">{{ $product->product_name}}</a>
+                        </h4>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </aside>
+@endisset
 <aside class="aside-search-box-wrapper offcanvas offcanvas-top" tabindex="-1" id="AsideOffcanvasSearch" aria-labelledby="offcanvasTopLabel">
     <div class="offcanvas-header">
         <h5 class="d-none" id="offcanvasTopLabel">Aside Search</h5>

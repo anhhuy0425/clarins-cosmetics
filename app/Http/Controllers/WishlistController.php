@@ -1,24 +1,13 @@
 <?php
-
 namespace App\Http\Controllers;
 use App\Models\Wishlist;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
-class ProductController extends Controller
-{
-    public function index()
-    {
-        $products = Product::paginate(9);
-        return view('shop.shop', compact('products'));
-    }
-    public function show($id)
-    {
-        $product = Product::findOrFail($id);
-        return view('product-details', compact('product'));
-    }
 
+class WishlistController extends Controller
+{
     public function toggleWishlist(Request $request)
 {
     if (!Auth::check()) {
@@ -47,6 +36,25 @@ class ProductController extends Controller
 
     return response()->json(['success' => true, 'added' => true, 'product_id' => $productId]);
     }
-    
 
+
+
+    // public function addToCart(Request $request, $id)
+    // {
+    //     $product = Product::findOrFail($id);
+    //     $cart = session()->get('cart', []);
+
+    //     if (isset($cart[$id])) {
+    //         $cart[$id]['quantity']++;
+    //     } else {
+    //         $cart[$id] = [
+    //             "name" => $product->name,
+    //             "quantity" => 1,
+    //             "price" => $product->price,
+    //             "image" => $product->image
+    //         ];
+    //     }
+    //     session()->put('cart', $cart);
+    //     return redirect()->back()->with('success', 'Product added to cart!');
+    // }
 }

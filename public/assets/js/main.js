@@ -302,10 +302,35 @@ $(document).on('click', '.action-btn-wishlist', function (e) {
             if (xhr.status === 401) {
                 window.location.href = '/login';
             } else {
-                alert('Có lỗi xảy ra!');
+                alert('Lỗi');
             }
         }
     });
 });
+
+
+
+$(document).on('click', '.action-btn-cart', function (e) {
+    e.preventDefault();
+
+    var productId = $(this).data('product-id');
+    var button = $(this);
+
+    $.ajax({
+        url: '/cart/add/' + productId,
+        method: 'POST',
+        data: {
+            _token: $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function(response) {
+            if (response.added) {
+                alert(response.message);
+            } else if (response.updated) {
+                alert(response.message);
+            }
+        },
+    });
+});
+
 
 
