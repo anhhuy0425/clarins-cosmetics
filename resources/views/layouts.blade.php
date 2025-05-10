@@ -344,9 +344,10 @@
             @php
                 $imagePath = Str::startsWith($item->product->image, 'http')? $item->product->image: asset('assets/images/shop/' . $product->image);
             @endphp
-
                 <li class="aside-product-list-item">
-                    <a href="{{ route('cart.remove', $item->product->id ?? 0) }}" class="remove">×</a>
+                    <a href="javascript:void(0);" class="remove"data-product-id="{{ $item->product->id ?? 0 }}">
+                        ×
+                    </a>
                     <a href="#">
                         <img src="{{ $imagePath }}"
                             width="68" height="84" alt="{{ $item->product->name ?? 'Product' }}">

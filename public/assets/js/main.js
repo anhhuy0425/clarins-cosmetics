@@ -333,4 +333,35 @@ $(document).on('click', '.action-btn-cart', function (e) {
 });
 
 
+document.querySelectorAll('a.remove').forEach(function (deleteLink) {
+    deleteLink.addEventListener('click', function (event) {
+        event.preventDefault();
+
+        var productId = deleteLink.getAttribute('data-product-id');
+
+        fetch('/cart/remove/' + productId, {
+            method: 'DELETE',
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Sản phẩm đã được xóa khỏi giỏ hàng!');
+                location.reload(); // Cập nhật lại giỏ hàng hoặc tải lại trang
+            } else {
+                alert('Có lỗi xảy ra!');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Lỗi khi xóa sản phẩm!');
+        });
+    });
+});
+
+
+
+
 

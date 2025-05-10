@@ -20,4 +20,3 @@ Route::post('/wishlist', [WishlistController::class, 'toggleWishlist']);
 Route::post('/cart/add/{id}', [CartsController::class, 'addToCart'])->name('cart.add');
 Route::get('/cart', [CartsController::class, 'showCart']);
 Route::delete('/cart/remove/{productId}', [CartsController::class, 'removeFromCart'])->name('cart.remove');
-

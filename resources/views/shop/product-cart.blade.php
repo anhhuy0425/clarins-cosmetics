@@ -1,17 +1,13 @@
 @extends('layouts')
 @section('content')
-<!--== Start Page Header Area Wrapper ==-->
 <nav aria-label="breadcrumb" class="breadcrumb-style1">
     <div class="container">
         <ol class="breadcrumb justify-content-center">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
             <li class="breadcrumb-item active" aria-current="page">Cart</li>
         </ol>
     </div>
 </nav>
-<!--== End Page Header Area Wrapper ==-->
-
-<!--== Start Product Area Wrapper ==-->
 <section class="section-space">
     <div class="container">
         <div class="shopping-cart-form table-responsive">
@@ -52,58 +48,6 @@
                             </td>
                             <td class="product-subtotal">
                                 <span class="price">$115.00</span>
-                            </td>
-                        </tr>
-                        <tr class="tbody-item">
-                            <td class="product-remove">
-                                <a class="remove" href="javascript:void(0)">×</a>
-                            </td>
-                            <td class="product-thumbnail">
-                                <div class="thumb">
-                                    <a href="single-product.html">
-                                        <img src="assets/images/shop/cart2.webp" width="68" height="84" alt="Image-HasTech">
-                                    </a>
-                                </div>
-                            </td>
-                            <td class="product-name">
-                                <a class="title" href="single-product.html">Kaoreet lobortis sagittis laoreet</a>
-                            </td>
-                            <td class="product-price">
-                                <span class="price">$95.00</span>
-                            </td>
-                            <td class="product-quantity">
-                                <div class="pro-qty">
-                                    <input type="text" class="quantity" title="Quantity" value="1">
-                                </div>
-                            </td>
-                            <td class="product-subtotal">
-                                <span class="price">$95.00</span>
-                            </td>
-                        </tr>
-                        <tr class="tbody-item">
-                            <td class="product-remove">
-                                <a class="remove" href="javascript:void(0)">×</a>
-                            </td>
-                            <td class="product-thumbnail">
-                                <div class="thumb">
-                                    <a href="single-product.html">
-                                        <img src="assets/images/shop/cart3.webp" width="68" height="84" alt="Image-HasTech">
-                                    </a>
-                                </div>
-                            </td>
-                            <td class="product-name">
-                                <a class="title" href="single-product.html">Nostrum exercitationem itae ipsum</a>
-                            </td>
-                            <td class="product-price">
-                                <span class="price">$79.00</span>
-                            </td>
-                            <td class="product-quantity">
-                                <div class="pro-qty">
-                                    <input type="text" class="quantity" title="Quantity" value="1">
-                                </div>
-                            </td>
-                            <td class="product-subtotal">
-                                <span class="price">$79.00</span>
                             </td>
                         </tr>
                         <tr class="tbody-item-actions">
