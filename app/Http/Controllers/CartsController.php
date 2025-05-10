@@ -70,26 +70,26 @@ class CartsController extends Controller
             }
         }
     }
-        public function showCart()
-    {
-        // Kiểm tra người dùng đã đăng nhập hay chưa
-        if (Auth::check()) {
-            // Nếu đã đăng nhập, lấy giỏ hàng từ bảng carts
-            $userId = Auth::id();
-            $cartItems = Cart::where('user_id', $userId)->get();
-        } else {
-            // Nếu chưa đăng nhập, lấy giỏ hàng từ session
-            $cartItems = session()->get('cart', []);
-        }
+    //     public function showCart()
+    // {
+    //     // Kiểm tra người dùng đã đăng nhập hay chưa
+    //     if (Auth::check()) {
+    //         // Nếu đã đăng nhập, lấy giỏ hàng từ bảng carts
+    //         $userId = Auth::id();
+    //         $cartItems = Cart::where('user_id', $userId)->get();
+    //     } else {
+    //         // Nếu chưa đăng nhập, lấy giỏ hàng từ session
+    //         $cartItems = session()->get('cart', []);
+    //     }
 
-        // Tính tổng giá trị giỏ hàng
-        $subtotal = $cartItems->sum(function ($item) {
-            return $item->quantity * $item->product->price;
-        });
+    //     // Tính tổng giá trị giỏ hàng
+    //     $subtotal = $cartItems->sum(function ($item) {
+    //         return $item->quantity * $item->product->price;
+    //     });
 
-        // Trả về view với giỏ hàng
-        return view('layouts', compact('cartItems', 'subtotal'));
-    }
+    //     // Trả về view với giỏ hàng
+    //     return view('layouts', compact('cartItems', 'subtotal'));
+    // }
 
             public function removeFromCart(Request $request, $productId)
     {

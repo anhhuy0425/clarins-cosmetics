@@ -341,22 +341,26 @@
     <div class="offcanvas-body">
         <ul class="aside-cart-product-list">
             @forelse($cartItems as $item)
+            @php
+                $imagePath = Str::startsWith($item->product->image, 'http')? $item->product->image: asset('assets/images/shop/' . $product->image);
+            @endphp
+
                 <li class="aside-product-list-item">
                     <a href="{{ route('cart.remove', $item->product->id ?? 0) }}" class="remove">×</a>
                     <a href="#">
-                        <img src="{{ asset($item->product->image ?? 'assets/images/shop/default.webp') }}"
+                        <img src="{{ $imagePath }}"
                             width="68" height="84" alt="{{ $item->product->name ?? 'Product' }}">
                         <span class="product-title">{{ $item->product->name ?? 'Sản phẩm' }}</span>
                     </a>
-                    <span class="product-price">{{ $item->quantity }} × £{{ $item->product->price ?? 0 }}</span>
+                    <span class="product-price">{{ $item->quantity }} × ${{ $item->product->price ?? 0 }}</span>
                 </li>
             @empty
-                <p>Giỏ hàng của bạn hiện tại trống.</p>
+                <p>cart is empty</p>
             @endforelse
         </ul>
         <p class="cart-total">
             <span>Subtotal:</span>
-            <span class="amount">£{{ $cartItems->sum(fn($item) => $item->quantity * ($item->product->price ?? 0)) }}</span>
+            <span class="amount">${{ $cartItems->sum(fn($item) => $item->quantity * ($item->product->price ?? 0)) }}</span>
         </p>
         <a class="btn-total" href="/Product-Cart">View cart</a>
         <a class="btn-total" href="product-checkout.html">Checkout</a>

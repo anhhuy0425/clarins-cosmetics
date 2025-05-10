@@ -19,8 +19,7 @@ class AuthController extends Controller
     }
     public function shop()
     {
-        $products = Product::paginate(9);
-        return view('shop.shop',compact('products'));
+        return view('shop.shop');
     }
     public function product_cart()
     {

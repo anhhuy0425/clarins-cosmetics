@@ -1050,25 +1050,25 @@
             </div>
             <div class="offcanvas-body">
                 <ul class="aside-cart-product-list">
-                    <li class="aside-product-list-item">
-                        <a href="#/" class="remove">×</a>
-                        <a href="product-details.html">
-                            <img src="assets/images/shop/cart1.webp" width="68" height="84" alt="Image">
-                            <span class="product-title">Leather Mens Slipper</span>
-                        </a>
-                        <span class="product-price">1 × £69.99</span>
-                    </li>
-                    <li class="aside-product-list-item">
-                        <a href="#/" class="remove">×</a>
-                        <a href="product-details.html">
-                            <img src="assets/images/shop/cart2.webp" width="68" height="84" alt="Image">
-                            <span class="product-title">Quickiin Mens shoes</span>
-                        </a>
-                        <span class="product-price">1 × £20.00</span>
-                    </li>
+                    @forelse($cartItems as $item)
+                        <li class="aside-product-list-item">
+                            <a href="{{ route('cart.remove', $item->product->id ?? 0) }}" class="remove">×</a>
+                            <a href="#">
+                                <img src="#"
+                                    width="68" height="84" alt="{{ $item->product->name ?? 'Product' }}">
+                                <span class="product-title">{{ $item->product->name ?? 'Sản phẩm' }}</span>
+                            </a>
+                            <span class="product-price">{{ $item->quantity }} × ${{ $item->product->price ?? 0 }}</span>
+                        </li>
+                    @empty
+                        <p>cart is empty</p>
+                    @endforelse
                 </ul>
-                <p class="cart-total"><span>Subtotal:</span><span class="amount">£89.99</span></p>
-                <a class="btn-total" href="product-cart.html">View cart</a>
+                <p class="cart-total">
+                    <span>Subtotal:</span>
+                    <span class="amount">${{ $cartItems->sum(fn($item) => $item->quantity * ($item->product->price ?? 0)) }}</span>
+                </p>
+                <a class="btn-total" href="/Product-Cart">View cart</a>
                 <a class="btn-total" href="product-checkout.html">Checkout</a>
             </div>
         </aside>
