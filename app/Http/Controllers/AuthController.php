@@ -25,6 +25,10 @@ class AuthController extends Controller
     {
         return view('shop.product-cart');
     }
+    public function product_checkout()
+    {
+        return view('shop.product-checkout');
+    }
     public function contact()
     {
         return view('contact');

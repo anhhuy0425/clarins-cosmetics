@@ -49,9 +49,10 @@
                             </td>
                             <td class="product-quantity">
                                 <div class="pro-qty">
-                                    <input type="text" class="quantity" name="quantities[{{ $item->product->id }}]" value="{{ $item->quantity }}" value="{{$item->quantity}}">
+                                    <input type="number" class="quantity" name="quantities[{{ $item->product->id }}]" value="{{ $item->quantity }}" value="{{$item->quantity}}">
                                 </div>
                             </td>
+
                             <td class="product-subtotal">
                                 <span class="price">{{ $item->quantity * ($item->product->price ?? 0)}}</span>
                             </td>
@@ -73,8 +74,6 @@
                 <div class="coupon-wrap">
                     <h4 class="title">Coupon</h4>
                     <p class="desc">Enter your coupon code if you have one.</p>
-                    {{-- <input type="text" class="form-control" placeholder="Coupon code">
-                    <button type="button" class="btn-coupon">Apply coupon</button> --}}
                     <form id="couponForm" action="{{ route('cart.applyVoucher') }}" method="POST">
                         @csrf
                         <input type="text" class="form-control" id="voucher_code" name="voucher_code" placeholder="Coupon code">
@@ -115,25 +114,21 @@
                                 <td>
                                     <ul class="shipping-list">
                                         <li class="radio">
-                                            <input type="radio" name="shipping" id="radio1" checked>
-                                            <label for="radio1">Flat rate: <span>$3.00</span></label>
+                                            <input type="radio" name="shipping" id="radio2" value="0" onclick="updateShipping()">
+                                            <label for="radio2">TPHCM (Free)</label>
                                         </li>
                                         <li class="radio">
-                                            <input type="radio" name="shipping" id="radio2">
-                                            <label for="radio2">Free shipping</label>
-                                        </li>
-                                        <li class="radio">
-                                            <input type="radio" name="shipping" id="radio3">
-                                            <label for="radio3">Local pickup</label>
+                                            <input type="radio" name="shipping" id="radio1" value="30" onclick="updateShipping()">
+                                            <label for="radio1">Other Address<span>$30</span></label>
                                         </li>
                                     </ul>
-                                    <a href="javascript:void(0)" class="btn-shipping-address">Change address</a>
                                 </td>
                             </tr>
+                            <span id="totalAfterDiscount" data-value="{{ $totalAfterDiscount }}"></span>
                             <tr class="order-total">
                                 <th>Total</th>
                                 <td>
-                                    <span class="amount">${{ number_format($totalAfterDiscount, 2) }}</span>
+                                    <span id="total" class="amount">${{ number_format($totalAfterDiscount, 2) }}</span>
                                 </td>
                             </tr>
                         </tbody>
@@ -145,9 +140,5 @@
             </div>
         </div>
     </div>
-    <pre>
-    Discount: {{ session('discount') }}
-    Total after discount: {{ session('totalAfterDiscount') }}
-</pre>
 </section>
 @endsection

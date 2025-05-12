@@ -8,6 +8,7 @@ use App\Http\Controllers\PayController;
 Route::get('/', [AuthController::class, 'home'])->name('home');
 Route::get('/About', [AuthController::class, 'about'])->name('about');
 Route::get('/Product-Cart', [AuthController::class, 'product_cart'])->name('product_cart');
+Route::get('/Product-Checkout', [AuthController::class, 'product_checkout'])->name('product_checkout');
 Route::get('/contact', [AuthController::class, 'contact'])->name('contact');
 Route::get('/Faq', [AuthController::class, 'Faq'])->name('Faq');
 Route::get('/register', [AuthController::class, 'showRegisterForm']);

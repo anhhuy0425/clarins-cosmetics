@@ -337,7 +337,7 @@ $(document).on('click', '.action-btn-cart', function (e) {
 document.querySelectorAll('a.remove').forEach(function (deleteLink) {
     deleteLink.addEventListener('click', function (event) {
         event.preventDefault();
-        event.stopPropagation(); // ⛔ Ngăn form submit sau khi xoá
+        event.stopPropagation();
 
         var productId = deleteLink.getAttribute('data-product-id');
 
@@ -363,6 +363,36 @@ document.querySelectorAll('a.remove').forEach(function (deleteLink) {
     });
 });
 
+
+let previousShippingValue = null;
+function updateShipping() {
+    const radios = document.getElementsByName('shipping');
+    let shipping = 0;
+
+    // Lấy phí ship đã chọn
+    for (const r of radios) {
+        if (r.checked) {
+            shipping = parseInt(r.value); // Lấy giá trị phí ship từ radio
+            isChecked = true;
+            break;
+        }
+    }
+    if (!isChecked) {
+        // Nếu không có radio nào được chọn, không làm gì thêm
+        return;
+    }
+    if (shipping === previousShippingValue) {
+        return;
+    }
+    previousShippingValue = shipping;
+    const totalAfterDiscount = parseFloat(document.getElementById('totalAfterDiscount').dataset.value);
+    const total = totalAfterDiscount + shipping;
+
+    document.getElementById('total').textContent = '$' + total.toFixed(2);
+}
+document.addEventListener('DOMContentLoaded', function () {
+    updateShipping();
+});
 
 
 
