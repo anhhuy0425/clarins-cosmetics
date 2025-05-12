@@ -24,3 +24,5 @@ Route::get('/cart', [CartsController::class, 'showCart']);
 Route::delete('/cart/remove/{productId}', [CartsController::class, 'removeFromCart'])->name('cart.remove');
 Route::post('/cart/update', [CartsController::class, 'updateCart'])->name('cart.update');
 Route::post('/cart/apply-voucher', [PayController::class, 'applyVoucher'])->name('cart.applyVoucher');
+Route::post('/place-order', [PayController::class, 'placeOrder'])->name('place.order');
+

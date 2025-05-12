@@ -56,7 +56,7 @@
                                         <li><a href="#/" class="mega-title">Others Pages</a>
                                             <ul>
                                                 <li><a href="/Product-Cart">Shopping Cart</a></li>
-                                                <li><a href="product-checkout.html">Checkout</a></li>
+                                                <li><a href="/Product-Checkout">Checkout</a></li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -306,9 +306,9 @@
     <div class="offcanvas-body">
         <ul class="aside-cart-product-list">
             @forelse($cartItems as $item)
-            @php
-                $imagePath = Str::startsWith($item->product->image, 'http')? $item->product->image: asset('assets/images/shop/' . $product->image);
-            @endphp
+                @php
+                    $imagePath = Str::startsWith($item->product->image, 'http')? $item->product->image: asset('assets/images/shop/' .$item->product->image);
+                @endphp
                 <li class="aside-product-list-item">
                     <a href="javascript:void(0);" class="remove"data-product-id="{{ $item->product->id ?? 0 }}">
                         ×
@@ -329,7 +329,7 @@
             <span class="amount">${{$subtotal}}</span>
         </p>
         <a class="btn-total" href="/Product-Cart">View cart</a>
-        <a class="btn-total" href="product-checkout.html">Checkout</a>
+        <a class="btn-total" href="/Product-Checkout">Checkout</a>
     </div>
 </aside>
 
@@ -359,9 +359,7 @@
                         <li><a href="#" class="offcanvas-nav-item">Others Pages</a>
                             <ul>
                                 <li><a href="product-cart.html">Shopping Cart</a></li>
-                                <li><a href="product-checkout.html">Checkout</a></li>
-                                <li><a href="product-wishlist.html">Wishlist</a></li>
-                                <li><a href="product-compare.html">Compare</a></li>
+                                <li><a href="/Product-Checkout">Checkout</a></li>
                             </ul>
                         </li>
                     </ul>

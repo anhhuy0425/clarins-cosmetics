@@ -72,4 +72,11 @@ class PayController extends Controller
         session()->put('voucher_code', $voucher->code);
         return redirect()->back();
     }
+
+
+
+
+
+
+    
 }

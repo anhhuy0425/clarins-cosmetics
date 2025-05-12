@@ -27,7 +27,16 @@ class AuthController extends Controller
     }
     public function product_checkout()
     {
-        return view('shop.product-checkout');
+            if (auth()->check()) {
+            $user = auth()->user();
+            return view('shop.product-checkout', [
+                'user' => $user,
+            ]);
+        } else {
+            return view('shop.product-checkout', [
+                'user' => null
+            ]);
+        }
     }
     public function contact()
     {
@@ -68,6 +77,7 @@ class AuthController extends Controller
     {
         return view('account_login');
     }
+    
     public function login(Request $request)
     {
         $request->validate([

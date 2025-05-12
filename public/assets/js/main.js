@@ -369,16 +369,16 @@ function updateShipping() {
     const radios = document.getElementsByName('shipping');
     let shipping = 0;
 
-    // Lấy phí ship đã chọn
+
+    let isChecked = false;
     for (const r of radios) {
         if (r.checked) {
-            shipping = parseInt(r.value); // Lấy giá trị phí ship từ radio
+            shipping = parseInt(r.value);
             isChecked = true;
             break;
         }
     }
     if (!isChecked) {
-        // Nếu không có radio nào được chọn, không làm gì thêm
         return;
     }
     if (shipping === previousShippingValue) {
@@ -389,11 +389,56 @@ function updateShipping() {
     const total = totalAfterDiscount + shipping;
 
     document.getElementById('total').textContent = '$' + total.toFixed(2);
+    document.getElementById('shipping').innerText = '$' + previousShippingValue.toFixed(2);
 }
+
+// const userIsLoggedIn = {!! json_encode(auth()->check()) !!};
 document.addEventListener('DOMContentLoaded', function () {
     updateShipping();
+    const addressInput = document.getElementById('address');
+    const proceedBtn = document.getElementById('proceedBtn');
+    if (proceedBtn) {
+        proceedBtn.addEventListener('click', function (e) {
+            if (previousShippingValue === null) {
+                alert("Please select an address before continuing.");
+                e.preventDefault();
+            }
+        });
+    }
+    if (!window.userIsLoggedIn) {
+        const guestModal = new bootstrap.Modal(document.getElementById('guestCheckoutModal'));
+        guestModal.show();
+    }
+    window.continueAsGuest = function () {
+        const guestModal = bootstrap.Modal.getInstance(document.getElementById('guestCheckoutModal'));
+        guestModal.hide();
+        // Có thể set flag guest để xử lý khi đặt hàng
+        window.continueAsGuestMode = true;
+    }
+    addressInput.addEventListener('blur', function () {
+        const address = this.value.toLowerCase();
+        if (address.includes('tphcm') || address.includes('hồ chí minh')) {
+            document.getElementById('radio2').checked = true;
+        } else {
+            document.getElementById('radio1').checked = true;
+        }
+        updateShipping();
+    });
 });
 
+document.getElementById('address').addEventListener('input', function () {
+    const address = this.value.toLowerCase();
+
+    if (address.includes('tphcm') || address.includes('hồ chí minh')) {
+        document.getElementById('radio2').checked = true;
+        document.getElementById('shipping_fee').value = 0;
+        updateTotalWithShipping(0);
+    } else {
+        document.getElementById('radio1').checked = true;
+        document.getElementById('shipping_fee').value = 30;
+        updateTotalWithShipping(30);
+    }
+});
 
 
 

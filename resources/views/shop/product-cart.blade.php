@@ -72,7 +72,7 @@
         <div class="row">
             <div class="col-12 col-lg-6">
                 @php
-                $discount = session('discount', 0); // Lấy giá trị discount từ session, nếu không có thì mặc định là 0
+                $discount = session('discount', 0);
                 @endphp
                 <div class="coupon-wrap">
                     <h4 class="title">Coupon</h4>
@@ -136,8 +136,9 @@
                             </tr>
                         </tbody>
                     </table>
+
                     <div class="text-end">
-                        <a href="shop-checkout.html" class="checkout-button">Proceed to checkout</a>
+                        <a href="/Product-Checkout" class="checkout-button" id="proceedBtn">Proceed to checkout</a>
                     </div>
                 </div>
             </div>
