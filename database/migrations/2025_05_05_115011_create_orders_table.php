@@ -22,7 +22,6 @@ return new class extends Migration
             $table->decimal('total_amount', 10, 2);
             $table->text('order_detail')->nullable();
             $table->string('payment_method');
-            $table->unsignedBigInteger('shipping_rule_id')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
