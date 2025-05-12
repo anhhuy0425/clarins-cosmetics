@@ -79,19 +79,19 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label for="address">Address:<abbr class="required" title="required">*</abbr></label>
-                                                    <input type="text" id="address" class="form-control" placeholder="Enter your address">
+                                                    <input type="text" id="address" name="address" class="form-control" placeholder="Enter your address">
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label for="phone">Phone <abbr class="required" title="required">*</abbr></label>
-                                                    <input id="phone" type="text" class="form-control">
+                                                    <input id="phone" name="phone" type="text" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label for="email">Email address</label>
-                                                    <input id="email" type="text" class="form-control">
+                                                    <input id="email" name="email" type="text" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
