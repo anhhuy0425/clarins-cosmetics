@@ -43,15 +43,18 @@ class PayController extends Controller
         $voucher = Voucher::where('code', $voucherCode)->first();
 
         if (!$voucher) {
+            session()->forget('discount');
             return back()->with('error', 'Invalid coupon code');
         }
         $subtotal = $this->getCartSubtotal();
         if ($subtotal < $voucher->min_order_amount) {
+            session()->forget('discount');
             return back()->with('error', 'Order value does not qualify for discount code');
         }
 
         $currentDate = now();
         if ($currentDate->lt($voucher->start_date) || $currentDate->gt($voucher->expiry_date)) {
+            session()->forget('discount');
             return back()->with('error', 'Coupon code has expired');
         }
         $discount = 0;

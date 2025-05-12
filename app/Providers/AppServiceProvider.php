@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use App\Models\Cart;
 use App\Models\Product;
 
@@ -44,6 +45,13 @@ class AppServiceProvider extends ServiceProvider
 
             }
             $discount = session('discount', 0);
+            $voucherCode = session('voucher_code');
+            $voucher = \App\Models\Voucher::where('code', $voucherCode)->first();
+            if ($voucher && $subtotal < $voucher->min_order_amount) {
+            Session::forget('discount');
+            Session::forget('voucher_code');
+            $discount = 0;
+            }
             $totalAfterDiscount = $subtotal - $discount;
             $view->with([
                 'products' => Product::paginate(9),

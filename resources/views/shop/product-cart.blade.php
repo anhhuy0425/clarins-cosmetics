@@ -49,7 +49,7 @@
                             </td>
                             <td class="product-quantity">
                                 <div class="pro-qty">
-                                    <input type="number" class="quantity" name="quantities[{{ $item->product->id }}]" value="{{ $item->quantity }}" value="{{$item->quantity}}">
+                                    <input type="text" class="quantity" name="quantities[{{ $item->product->id }}]" value="{{ $item->quantity }}" value="{{$item->quantity}}">
                                 </div>
                             </td>
 
@@ -71,6 +71,9 @@
         </div>
         <div class="row">
             <div class="col-12 col-lg-6">
+                @php
+                $discount = session('discount', 0); // Lấy giá trị discount từ session, nếu không có thì mặc định là 0
+                @endphp
                 <div class="coupon-wrap">
                     <h4 class="title">Coupon</h4>
                     <p class="desc">Enter your coupon code if you have one.</p>
