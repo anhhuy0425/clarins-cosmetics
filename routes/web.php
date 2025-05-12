@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\CartsController;
+use App\Http\Controllers\PayController;
 Route::get('/', [AuthController::class, 'home'])->name('home');
 Route::get('/About', [AuthController::class, 'about'])->name('about');
 Route::get('/Product-Cart', [AuthController::class, 'product_cart'])->name('product_cart');
@@ -21,3 +22,4 @@ Route::post('/cart/add/{id}', [CartsController::class, 'addToCart'])->name('cart
 Route::get('/cart', [CartsController::class, 'showCart']);
 Route::delete('/cart/remove/{productId}', [CartsController::class, 'removeFromCart'])->name('cart.remove');
 Route::post('/cart/update', [CartsController::class, 'updateCart'])->name('cart.update');
+Route::post('/cart/apply-voucher', [PayController::class, 'applyVoucher'])->name('cart.applyVoucher');

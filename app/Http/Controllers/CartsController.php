@@ -81,15 +81,14 @@ class CartsController extends Controller
                 ->where('product_id', $productId)
                 ->delete();
         } else {
-        $cart = session()->get('cart', []);
-        $productId = (string) $productId; // ⚠️ Sửa ở đây
+            $cart = session()->get('cart', []);
+            $productId = (string) $productId; // ⚠️ Sửa ở đây
 
-        if (isset($cart[$productId])) {
-            unset($cart[$productId]);
-            session()->put('cart', $cart);
+            if (isset($cart[$productId])) {
+                unset($cart[$productId]);
+                session()->put('cart', $cart);
+            }
         }
-    }
-
        return response()->json(['success' => true]);
     }
 
@@ -98,28 +97,46 @@ class CartsController extends Controller
         public function updateCart(Request $request)
     {
         $quantities = $request->input('quantities', []);
+        $removeIds = $request->input('remove', []);
+
         if (Auth::check()) {
             $userId = Auth::id();
-
+            if (!empty($removeIds)) {
+                Cart::where('user_id', $userId)->whereIn('product_id', $removeIds)->delete();
+            }
             foreach ($quantities as $productId => $quantity) {
-                Cart::where('user_id', $userId)
-                    ->where('product_id', $productId)
-                    ->update(['quantity' => $quantity]);
+                $cartItem = Cart::where('user_id', $userId)->where('product_id', $productId)->first();
+                if ($cartItem) {
+                    $cartItem->quantity = $quantity;
+                    $cartItem->total = $quantity * $cartItem->product->price;
+                    $cartItem->save();
+                }
             }
         } else {
+            // Giỏ hàng lưu trong session
             $cart = session()->get('cart', []);
 
+            // Xóa
+            if (!empty($removeIds)) {
+                foreach ($removeIds as $id) {
+                    unset($cart[$id]);
+                }
+            }
+
+            // Cập nhật số lượng
             foreach ($quantities as $productId => $quantity) {
                 if (isset($cart[$productId])) {
                     $cart[$productId]['quantity'] = $quantity;
+                    $cart[$productId]['total'] = $quantity * $cart[$productId]['price'];
                 }
             }
 
             session()->put('cart', $cart);
         }
 
-        return redirect()->back()->with('success', 'Giỏ hàng đã được cập nhật!');
+        return redirect()->back()->with('success', 'Giỏ hàng đã được cập nhật.');
     }
+
 
 
 }

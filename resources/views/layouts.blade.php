@@ -326,7 +326,7 @@
         </ul>
         <p class="cart-total">
             <span>Subtotal:</span>
-            <span class="amount">${{ $cartItems->sum(fn($item) => $item->quantity * ($item->product->price ?? 0)) }}</span>
+            <span class="amount">${{$subtotal}}</span>
         </p>
         <a class="btn-total" href="/Product-Cart">View cart</a>
         <a class="btn-total" href="product-checkout.html">Checkout</a>

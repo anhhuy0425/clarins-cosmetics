@@ -325,6 +325,7 @@ $(document).on('click', '.action-btn-cart', function (e) {
         success: function(response) {
             if (response.added) {
                 alert(response.message);
+                location.reload();
             } else if (response.updated) {
                 alert(response.message);
             }

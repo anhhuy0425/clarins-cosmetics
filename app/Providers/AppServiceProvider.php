@@ -19,8 +19,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer('*', function ($view) {
+            $subtotal = 0;
             if (Auth::check()) {
                 $cartItems = Cart::with('product')->where('user_id', Auth::id())->get();
+                $subtotal = $cartItems->sum(function ($item) {
+                    return $item->quantity * ($item->product->price ?? 0);
+                });
             } else {
                 $sessionCart = session()->get('cart', []);
                 $cartItems = collect();
@@ -35,11 +39,19 @@ class AppServiceProvider extends ServiceProvider
                         ],
                         'quantity' => $item['quantity'] ?? 1,
                     ]);
+                    $subtotal += $item['quantity'] * ($item['price'] ?? 0);
                 }
 
             }
-            $view->with('products', Product::paginate(9));
-            $view->with('cartItems', $cartItems);
+            $discount = session('discount', 0);
+            $totalAfterDiscount = $subtotal - $discount;
+            $view->with([
+                'products' => Product::paginate(9),
+                'cartItems' => $cartItems,
+                'subtotal' => $subtotal,
+                'discount' => $discount,
+                'totalAfterDiscount' => $totalAfterDiscount,
+            ]);
         });
     }
 }

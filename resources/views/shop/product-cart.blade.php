@@ -42,14 +42,14 @@
                                 </div>
                             </td>
                             <td class="product-name">
-                                <a class="title" href="#"><span class="product-title">{{ $item->product->name ?? 'Sản phẩm' }}</span></a>
+                                <a class="title" href="#"><span class="product-title">{{ $item->product->name ?? 'Product' }}</span></a>
                             </td>
                             <td class="product-price">
                                 <span class="price">$ {{$item->product->price}}</span>
                             </td>
                             <td class="product-quantity">
                                 <div class="pro-qty">
-                                    <input type="text" class="quantity" name="items[{{ $item->quantity }}][quantities]" title="Quantity" value="{{$item->quantity}}">
+                                    <input type="text" class="quantity" name="quantities[{{ $item->product->id }}]" value="{{ $item->quantity }}" value="{{$item->quantity}}">
                                 </div>
                             </td>
                             <td class="product-subtotal">
@@ -73,8 +73,13 @@
                 <div class="coupon-wrap">
                     <h4 class="title">Coupon</h4>
                     <p class="desc">Enter your coupon code if you have one.</p>
-                    <input type="text" class="form-control" placeholder="Coupon code">
-                    <button type="button" class="btn-coupon">Apply coupon</button>
+                    {{-- <input type="text" class="form-control" placeholder="Coupon code">
+                    <button type="button" class="btn-coupon">Apply coupon</button> --}}
+                    <form id="couponForm" action="{{ route('cart.applyVoucher') }}" method="POST">
+                        @csrf
+                        <input type="text" class="form-control" id="voucher_code" name="voucher_code" placeholder="Coupon code">
+                        <button type="submit" class="btn-coupon">Apply coupon</button>
+                    </form>
                 </div>
             </div>
             <div class="col-12 col-lg-6">
@@ -85,9 +90,26 @@
                             <tr class="cart-subtotal">
                                 <th>Subtotal</th>
                                 <td>
-                                    <span class="amount">$499.00</span>
+                                    <span class="amount">${{$subtotal}}</span>
                                 </td>
                             </tr>
+                                @if(session('success'))
+                                    <script>
+                                        alert("{{ session('success') }}");
+                                    </script>
+                                @endif
+                                @if(session('error'))
+                                    <script>
+                                        alert("{{ session('error') }}");
+                                    </script>
+                                @endif
+                            @if($discount > 0)
+                                <tr class="cart-discount">
+                                    <th>Discount</th>
+                                    <td><span class="amount">- ${{ number_format($discount, 2) }}</span></td>
+                                </tr>
+                            @endif
+
                             <tr class="shipping-totals">
                                 <th>Shipping</th>
                                 <td>
@@ -105,14 +127,13 @@
                                             <label for="radio3">Local pickup</label>
                                         </li>
                                     </ul>
-                                    <p class="destination">Shipping to <strong>USA</strong>.</p>
                                     <a href="javascript:void(0)" class="btn-shipping-address">Change address</a>
                                 </td>
                             </tr>
                             <tr class="order-total">
                                 <th>Total</th>
                                 <td>
-                                    <span class="amount">$504.00</span>
+                                    <span class="amount">${{ number_format($totalAfterDiscount, 2) }}</span>
                                 </td>
                             </tr>
                         </tbody>
@@ -124,5 +145,9 @@
             </div>
         </div>
     </div>
+    <pre>
+    Discount: {{ session('discount') }}
+    Total after discount: {{ session('totalAfterDiscount') }}
+</pre>
 </section>
 @endsection
