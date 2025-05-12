@@ -25,16 +25,18 @@ class AppServiceProvider extends ServiceProvider
                 $sessionCart = session()->get('cart', []);
                 $cartItems = collect();
 
-                foreach ($sessionCart as $item) {
+                foreach ($sessionCart as $productId => $item) {
                     $cartItems->push((object)[
                         'product' => (object)[
-                        'name' => $item['name'] ?? 'Sản phẩm',
-                        'price' => $item['price'] ?? 0,
-                        'image' => $item['image'] ?? null,
+                            'id' => $productId,
+                            'name' => $item['name'] ?? 'Sản phẩm',
+                            'price' => $item['price'] ?? 0,
+                            'image' => $item['image'] ?? null,
                         ],
                         'quantity' => $item['quantity'] ?? 1,
                     ]);
                 }
+
             }
             $view->with('products', Product::paginate(9));
             $view->with('cartItems', $cartItems);

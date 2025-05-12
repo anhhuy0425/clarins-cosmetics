@@ -336,6 +336,7 @@ $(document).on('click', '.action-btn-cart', function (e) {
 document.querySelectorAll('a.remove').forEach(function (deleteLink) {
     deleteLink.addEventListener('click', function (event) {
         event.preventDefault();
+        event.stopPropagation(); // ⛔ Ngăn form submit sau khi xoá
 
         var productId = deleteLink.getAttribute('data-product-id');
 

@@ -65,7 +65,8 @@ class CartsController extends Controller
 
                 return response()->json([
                     'added' => true,
-                    'message' => 'Sản phẩm đã được thêm vào giỏ hàng (session).'
+                    'message' => 'Sản phẩm đã được thêm vào giỏ hàng (session).',
+                    'cart' => $cart
                 ]);
             }
         }
@@ -80,13 +81,45 @@ class CartsController extends Controller
                 ->where('product_id', $productId)
                 ->delete();
         } else {
-            // Nếu chưa đăng nhập, xóa sản phẩm từ session
-            $cart = session()->get('cart', []);
+        $cart = session()->get('cart', []);
+        $productId = (string) $productId; // ⚠️ Sửa ở đây
+
+        if (isset($cart[$productId])) {
             unset($cart[$productId]);
             session()->put('cart', $cart);
         }
+    }
 
        return response()->json(['success' => true]);
     }
+
+
+
+        public function updateCart(Request $request)
+    {
+        $quantities = $request->input('quantities', []);
+        if (Auth::check()) {
+            $userId = Auth::id();
+
+            foreach ($quantities as $productId => $quantity) {
+                Cart::where('user_id', $userId)
+                    ->where('product_id', $productId)
+                    ->update(['quantity' => $quantity]);
+            }
+        } else {
+            $cart = session()->get('cart', []);
+
+            foreach ($quantities as $productId => $quantity) {
+                if (isset($cart[$productId])) {
+                    $cart[$productId]['quantity'] = $quantity;
+                }
+            }
+
+            session()->put('cart', $cart);
+        }
+
+        return redirect()->back()->with('success', 'Giỏ hàng đã được cập nhật!');
+    }
+
 
 }

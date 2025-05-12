@@ -11,7 +11,8 @@
 <section class="section-space">
     <div class="container">
         <div class="shopping-cart-form table-responsive">
-            <form action="#" method="post">
+            <form action="{{ route('cart.update') }}" method="POST">
+                @csrf
                 <table class="table text-center">
                     <thead>
                         <tr>
@@ -24,35 +25,43 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @forelse($cartItems as $item)
+                        @php
+                            $imagePath = Str::startsWith($item->product->image, 'http')? $item->product->image: asset('assets/images/shop/' . $item->product->image);
+                        @endphp
                         <tr class="tbody-item">
                             <td class="product-remove">
-                                <a class="remove" href="javascript:void(0)">×</a>
+                                <a href="javascript:void(0);" class="remove"data-product-id="{{ $item->product->id ?? 0 }}">×</a>
                             </td>
                             <td class="product-thumbnail">
                                 <div class="thumb">
-                                    <a href="single-product.html">
-                                        <img src="assets/images/shop/cart1.webp" width="68" height="84" alt="Image-HasTech">
+                                    <a href="#">
+                                        <img src="{{ $imagePath }}"
+                                            width="68" height="84" alt="{{ $item->product->name ?? 'Product' }}">
                                     </a>
                                 </div>
                             </td>
                             <td class="product-name">
-                                <a class="title" href="single-product.html">Condimentum posuere consectetur urna</a>
+                                <a class="title" href="#"><span class="product-title">{{ $item->product->name ?? 'Sản phẩm' }}</span></a>
                             </td>
                             <td class="product-price">
-                                <span class="price">$115.00</span>
+                                <span class="price">$ {{$item->product->price}}</span>
                             </td>
                             <td class="product-quantity">
                                 <div class="pro-qty">
-                                    <input type="text" class="quantity" title="Quantity" value="1">
+                                    <input type="text" class="quantity" name="items[{{ $item->quantity }}][quantities]" title="Quantity" value="{{$item->quantity}}">
                                 </div>
                             </td>
                             <td class="product-subtotal">
-                                <span class="price">$115.00</span>
+                                <span class="price">{{ $item->quantity * ($item->product->price ?? 0)}}</span>
                             </td>
                         </tr>
-                        <tr class="tbody-item-actions">
+                        @empty
+                            <p>cart is empty</p>
+                        @endforelse
+                         <tr class="tbody-item-actions">
                             <td colspan="6">
-                                <button type="submit" class="btn-update-cart disabled" disabled>Update cart</button>
+                                <button type="submit" class="btn-update-cart ">Update cart</button>
                             </td>
                         </tr>
                     </tbody>

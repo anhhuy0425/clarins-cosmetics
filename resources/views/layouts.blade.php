@@ -57,8 +57,6 @@
                                             <ul>
                                                 <li><a href="/Product-Cart">Shopping Cart</a></li>
                                                 <li><a href="product-checkout.html">Checkout</a></li>
-                                                <li><a href="product-wishlist.html">Wishlist</a></li>
-                                                <li><a href="product-compare.html">Compare</a></li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -195,40 +193,7 @@
 </footer>
 <div id="scroll-to-top" class="scroll-to-top"><span class="fa fa-angle-up"></span></div>
 
-
 @isset($product)
-{{-- <aside class="product-action-modal modal fade" id="action-WishlistModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-body">
-                <div class="product-action-view-content">
-                        @php
-                            $imagePath = Str::startsWith($product->image, 'http')
-                            ? $product->image
-                            : asset('assets/images/shop/' . $product->image);
-                        @endphp
-                    <button type="button" class="btn-close" data-bs-dismiss="modal">
-                        <i class="fa fa-times"></i>
-                    </button>
-                    <div class="modal-action-messages">
-                        <i class="fa fa-check-square-o"></i> Added to wishlist successfully!
-                    </div>
-                    <div class="modal-action-product">
-                        <div class="thumb">
-                            <a class="d-block" href="{{ route('product_details', $product->id) }}">
-                                <img src="{{ $imagePath }}" width="370" height="450" alt="{{ $product->product_name }}">
-                            </a>
-                        </div>
-                        <h4 class="title">
-                            <a href="{{ route('product_details', $product->id) }}">{{ $product->product_name}}</a>
-                        </h4>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</aside> --}}
-
 <aside class="product-action-modal modal fade" id="action-CartAddModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -367,9 +332,7 @@
         <a class="btn-total" href="product-checkout.html">Checkout</a>
     </div>
 </aside>
-<!--== End Aside Cart ==-->
 
-<!--== Start Aside Menu ==-->
 <aside class="off-canvas-wrapper offcanvas offcanvas-start" tabindex="-1" id="AsideOffcanvasMenu" aria-labelledby="offcanvasExampleLabel">
     <div class="offcanvas-header">
         <h1 class="d-none" id="offcanvasExampleLabel">Aside Menu</h1>
