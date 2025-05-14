@@ -51,8 +51,10 @@
                                 <div class="product-details-action">
                                     <h4 class="price">${{$product->price}}</h4>
                                     <div class="product-details-cart-wishlist">
-                                        <button type="button" class="btn-wishlist" data-bs-toggle="modal" data-bs-target="#action-WishlistModal"><i class="fa fa-heart-o"></i></button>
-                                        <button type="button" class="btn ps-5" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">Buy Now</button>
+                                        <button type="button" class="btn-wishlist action-btn-wishlist" data-product-id="{{ $product->id }}" >
+                                            <i class="fa {{ $isWished ? 'fa-heart' : 'fa-heart-o' }}"></i>
+                                        </button>
+                                        <button type="button" class="btn ps-5 action-btn-cart" data-product-id="{{ $product->id }}">Buy Now</button>
                                     </div>
                                 </div>
                             </div>
@@ -61,31 +63,11 @@
                     <div class="row">
                         <div class="col-lg-7">
                             <div class="nav product-details-nav" id="product-details-nav-tab" role="tablist">
-                                <button class="nav-link" id="specification-tab" data-bs-toggle="tab" data-bs-target="#specification" type="button" role="tab" aria-controls="specification" aria-selected="false">Specification</button>
                                 <button class="nav-link active" id="review-tab" data-bs-toggle="tab" data-bs-target="#review" type="button" role="tab" aria-controls="review" aria-selected="true">Review</button>
                             </div>
                             <div class="tab-content" id="product-details-nav-tabContent">
-                                <div class="tab-pane" id="specification" role="tabpanel" aria-labelledby="specification-tab">
-                                    <ul class="product-details-info-wrap">
-                                        <li><span>Weight</span>
-                                            <p>250 g</p>
-                                        </li>
-                                        <li><span>Dimensions</span>
-                                            <p>10 x 10 x 15 cm</p>
-                                        </li>
-                                        <li><span>Materials</span>
-                                            <p>60% cotton, 40% polyester</p>
-                                        </li>
-                                        <li><span>Other Info</span>
-                                            <p>American heirloom jean shorts pug seitan letterpress</p>
-                                        </li>
-                                    </ul>
-
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius velit corporis quo voluptate culpa soluta, esse accusamus, sunt quia omnis amet temporibus sapiente harum quam itaque libero tempore. Ipsum, ducimus. lorem</p>
-                                </div>
 
                                 <div class="tab-pane fade show active" id="review" role="tabpanel" aria-labelledby="review-tab">
-                                    <!--== Start Reviews Content Item ==-->
                                     <div class="product-review-item">
                                         <div class="product-review-top">
                                             <div class="product-review-thumb">
@@ -152,7 +134,6 @@
                                         <p class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra amet, sodales faucibus nibh. Vivamus amet potenti ultricies nunc gravida duis. Nascetur scelerisque massa sodales.</p>
                                         <button type="button" class="review-reply"><i class="fa fa fa-undo"></i></button>
                                     </div>
-                                    <!--== End Reviews Content Item ==-->
                                 </div>
                             </div>
                         </div>
