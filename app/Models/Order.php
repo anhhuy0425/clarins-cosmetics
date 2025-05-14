@@ -18,7 +18,6 @@ class Order extends Model
         'total_amount',
         'order_detail',
         'payment_method',
-        'shipping_rule_id',
     ];
 
     public function orderDetails()

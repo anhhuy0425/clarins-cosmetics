@@ -29,8 +29,9 @@ class CartsController extends Controller
             } else {
                 Cart::create([
                     'user_id' => auth()->id(),
-                    'product_id' => $id,
+                    'product_id' => $product->id,
                     'quantity' => 1,
+                    'price' => $product->price,
                     'total' => $product->price,
                 ]);
 
@@ -54,6 +55,7 @@ class CartsController extends Controller
                 ]);
             } else {
                 $cart[$id] = [
+                    'product_id' => $product->id,
                     'name' => $product->product_name,
                     'quantity' => 1,
                     'price' => $product->price,

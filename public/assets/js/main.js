@@ -440,5 +440,36 @@ document.getElementById('address').addEventListener('input', function () {
     }
 });
 
+document.querySelector('.title').addEventListener('click', function () {
+        const paymentMethod = this.innerText.trim(); // Lấy nội dung "Cash on delivery"
+        document.getElementById('payment_method').value = paymentMethod;
+});
+
+
+document.getElementById('submitLink').addEventListener('click', function(e) {
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const address = document.getElementById('address').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    // const shipping = document.getElementById('shipping_fee').value;
+    const paymentMethod = document.querySelector('input[name="payment_method"]:checked')?.value || '';
+
+    document.getElementById('formName').value = name;
+    document.getElementById('formAddress').value = address;
+    document.getElementById('formPhone').value = phone;
+    document.getElementById('formEmail').value = email;
+    // document.getElementById('formShipping').value = shipping;
+    document.getElementById('formtotal').value = document.getElementById('totalAfterDiscount').getAttribute('data-value');
+    document.getElementById('formPaymentMethod').value = paymentMethod;
+
+    if (!phone || !address || !email) {
+        alert("Vui lòng nhập đầy đủ thông tin.");
+        return;
+    }
+
+    document.getElementById('orderForm').submit();
+});
+
 
 

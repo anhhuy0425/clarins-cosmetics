@@ -68,40 +68,32 @@
                             <div class="checkout-billing-details-wrap">
                                 <h2 class="title">Billing details</h2>
                                 <div class="billing-form-wrap">
-                                    <form action="#" method="post">
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label for="f_name">Full name <abbr class="required" title="required">*</abbr></label>
-                                                    <input id="f_name" type="text" class="form-control">
+                                                    <label for="name">Full name <abbr class="required" title="required">*</abbr></label>
+                                                    <input id="name" type="text" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label for="address">Address:<abbr class="required" title="required">*</abbr></label>
-                                                    <input type="text" id="address" name="address" class="form-control" placeholder="Enter your address">
+                                                    <input type="text" id="address" class="form-control" placeholder="Enter your address">
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label for="phone">Phone <abbr class="required" title="required">*</abbr></label>
-                                                    <input id="phone" name="phone" type="text" class="form-control">
+                                                    <input id="phone" type="text" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label for="email">Email address</label>
-                                                    <input id="email" name="email" type="text" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="form-group mb-0">
-                                                    <label for="order-notes">Order notes (optional)</label>
-                                                    <textarea id="order-notes" class="form-control" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+                                                    <input id="email" type="text" class="form-control">
                                                 </div>
                                             </div>
                                         </div>
-                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -166,7 +158,7 @@
                                             <tr class="order-total">
                                                 <th>Total</th>
                                                 <td>
-                                                    <span id="total" class="amount">${{ number_format($totalAfterDiscount, 2) }}</span>
+                                                    <span id="total" name="totalAfterDiscount" class="amount">${{ number_format($totalAfterDiscount, 2) }}</span>
                                                 </td>
                                             </tr>
                                         </tfoot>
@@ -175,9 +167,10 @@
                                         <div id="PaymentMethodAccordion">
                                             <div class="card">
                                                 <div class="card-header" id="check_payments3">
-                                                    <h5 class="title" data-bs-toggle="collapse" data-bs-target="#itemThree" aria-controls="itemTwo" aria-expanded="false">Cash on delivery</h5>
+                                                    <input data-bs-toggle="collapse" data-bs-target="#itemcod" type="radio" name="payment_method" value="cod" id="cod">
+                                                    <label for="cod">Cash on Delivery</label>
                                                 </div>
-                                                <div id="itemThree" class="collapse" aria-labelledby="check_payments3" data-bs-parent="#PaymentMethodAccordion">
+                                                <div id="itemcod" class="collapse" aria-labelledby="check_payments3" data-bs-parent="#PaymentMethodAccordion">
                                                     <div class="card-body">
                                                         <p>Pay with cash upon delivery.</p>
                                                     </div>
@@ -187,12 +180,8 @@
                                         <div id="PaymentMethodAccordion">
                                             <div class="card">
                                                 <div class="card-header" id="check_payments3">
-                                                    <h5 class="title" data-bs-toggle="collapse" data-bs-target="#itemThree" aria-controls="itemTwo" aria-expanded="false">Cash on delivery</h5>
-                                                </div>
-                                                <div id="itemThree" class="collapse" aria-labelledby="check_payments3" data-bs-parent="#PaymentMethodAccordion">
-                                                    <div class="card-body">
-                                                        <p>Pay with cash upon delivery.</p>
-                                                    </div>
+                                                    <input data-bs-toggle="collapse" data-bs-target="#itemThree" type="radio" name="payment_method" value="transfer" id="transfer">
+                                                    <label for="transfer">Payment Transfer</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -203,7 +192,19 @@
                                                 <label for="privacy" class="custom-control-label">I have read and agree to the website terms and conditions <span class="required">*</span></label>
                                             </div>
                                         </div>
-                                        <a href="account.html" class="btn-place-order">Place order</a>
+                                        <form id="orderForm" action="{{ route('place.order') }}" method="POST">
+                                        @csrf
+                                            <input type="hidden" name="name" id="formName">
+                                            <input type="hidden" name="address" id="formAddress">
+                                            <input type="hidden" name="phone" id="formPhone">
+                                            <input type="hidden" name="email" id="formEmail">
+                                            {{-- <input type="hidden" name="shipping" id="formShipping"> --}}
+
+                                            <input type="hidden" name="totalAfterDiscount" id="formtotal" value="{{ $totalAfterDiscount }}">
+                                            <input type="hidden" name="payment_method" id="formPaymentMethod">
+                                            <a href="javascript:void(0);" id="submitLink" class="btn-place-order">Place order</a>
+
+                                        </form>
                                     </div>
                                 </div>
                             </div>

@@ -69,7 +69,7 @@ class PayController extends Controller
         if ($discount > $subtotal) {
             $discount = $subtotal;
         }
-        session()->flash('success', 'Mã giảm giá đã được áp dụng thành công.');
+        session()->flash('success', 'Coupon code has been applied successfully.');
         session()->put('discount', $discount);
         session()->put('voucher_code', $voucher->code);
         return redirect()->back();
@@ -79,15 +79,12 @@ class PayController extends Controller
     public function placeOrder(Request $request)
     {
         $userId = Auth::check() ? Auth::id() : null;
-        $shippingFee = $request->input('shipping', 0);
+        // $shipping = $request->input('shipping', 0);
         $totalAfterDiscount = $request->input('totalAfterDiscount');
         $address = $request->input('address');
         $phone = $request->input('phone');
         $email = $request->input('email');
         $paymentMethod = $request->input('payment_method');
-        // $shippingRuleId = $request->input('shipping_rule_id');
-
-        // Lấy dữ liệu giỏ hàng (nếu là guest hoặc đã đăng nhập)
         $cartItems = session('cart', []); // Nếu bạn dùng session
         if ($userId) {
             $cartItems = Cart::where('user_id', $userId)->get();
@@ -96,36 +93,29 @@ class PayController extends Controller
         if (empty($cartItems)) {
             return redirect()->back()->with('error', 'Cart is empty.');
         }
-
-        // $total = 0;
-        // foreach ($cartItems as $item) {
-        //     $total += $item['price'] * $item['quantity'];
-        // }
-        // $total += $shippingFee;
-
-        // Lưu vào bảng orders
         $order = Order::create([
             'user_id' => $userId,
-            'voucher_id' => null, // Nếu có voucher, bạn cần xử lý thêm
             'phone' => $phone,
             'email' => $email,
-            'shipping_time' => now(), // Thời gian giao hàng (hoặc nhập từ form)
             'address' => $address,
-            'total_amount' => $total,
+            // 'shipping' => $shipping,
+            'total_amount' => $totalAfterDiscount,
             'order_detail' => 'Pending',  // Trạng thái mặc định
             'payment_method' => $paymentMethod,
-            'shipping_rule_id' => $shippingRuleId,  // Nếu có quy tắc giao hàng
         ]);
 
         // Lưu từng sản phẩm vào bảng order_details
         foreach ($cartItems as $item) {
+            $productId = is_object($item) ? $item->product_id : $item['product_id'];
+            $quantity = is_object($item) ? $item->quantity : $item['quantity'];
+            $price = is_object($item) ? $item->price : $item['price'];
             OrderDetail::create([
                 'order_id' => $order->id,
-                'product_id' => $item['product_id'],
-                'status' => 'Pending',  // Trạng thái đơn hàng, có thể là 'Pending', 'Shipped', v.v.
-                'quantity' => $item['quantity'],
-                'price' => $item['price'],
-                'subtotal' => $item['price'] * $item['quantity'],  // Tính subtotal cho từng sản phẩm
+                'product_id' => $productId,
+                'status' => 'Pending',
+                'quantity' => $quantity,
+                'price' => $price,
+                'subtotal' => $quantity * $price,
             ]);
         }
 
@@ -136,7 +126,7 @@ class PayController extends Controller
             session()->forget('cart');
         }
 
-        return redirect()->route('thank.you')->with('success', 'Order placed successfully!');
+        return redirect('/')->with('success', 'Order placed successfully!');
     }
 
 
