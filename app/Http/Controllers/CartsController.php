@@ -32,7 +32,7 @@ class CartsController extends Controller
                     'product_id' => $product->id,
                     'quantity' => 1,
                     'price' => $product->price,
-                    'total' => $product->price,
+                    'total' => $price * $quantity,
                 ]);
 
                 return response()->json([
