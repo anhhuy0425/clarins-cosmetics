@@ -13,10 +13,10 @@ class ProductController extends Controller
         $products = Product::paginate(9);
         return view('shop.shop', compact('products'));
     }
-    public function show($id)
+    public function product_details($id)
     {
         $product = Product::findOrFail($id);
-        return view('product-details', compact('product'));
+        return view('shop.product-details', compact('product'));
     }
 
     public function toggleWishlist(Request $request)
@@ -47,6 +47,6 @@ class ProductController extends Controller
 
     return response()->json(['success' => true, 'added' => true, 'product_id' => $productId]);
     }
-    
+
 
 }

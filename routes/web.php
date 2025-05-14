@@ -17,7 +17,9 @@ Route::get('/login', [AuthController::class, 'showLoginForm']);
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/Shop', [ProductController::class, 'index'])->name('shop.index');
-Route::get('/product/{id}', [ProductController::class, 'show'])->name('product_details');
+
+Route::get('/product/{id}', [ProductController::class, 'product_details'])->name('product_details');
+
 Route::post('/wishlist', [WishlistController::class, 'toggleWishlist']);
 Route::post('/cart/add/{id}', [CartsController::class, 'addToCart'])->name('cart.add');
 Route::get('/cart', [CartsController::class, 'showCart']);
