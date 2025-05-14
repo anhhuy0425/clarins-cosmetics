@@ -4,7 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Brancy - Cosmetic & Beauty Salon Website Template</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>Clarins Cosmetics</title>
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="Brancy - Cosmetic & Beauty Salon Website Template">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -20,8 +21,8 @@
     <link rel="stylesheet" href="assets/css/plugins/fancybox.min.css">
     <link rel="stylesheet" href="assets/css/plugins/nice-select.css">
     <link rel="stylesheet" href="./assets/css/style.min.css">
-</head>
 
+</head>
 <body>
     <div class="wrapper">
         <header class="header-area sticky-header">
@@ -55,9 +56,7 @@
                                         <li><a href="#/" class="mega-title">Others Pages</a>
                                             <ul>
                                                 <li><a href="/Product-Cart">Shopping Cart</a></li>
-                                                <li><a href="product-checkout.html">Checkout</a></li>
-                                                <li><a href="product-wishlist.html">Wishlist</a></li>
-                                                <li><a href="product-compare.html">Compare</a></li>
+                                                <li><a href="/Product-Checkout">Checkout</a></li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -125,8 +124,8 @@
                                             <button type="submit">Sign Out</button>
                                         </form>
                                     @else
-                                        <a class="dropdown-item-icon mdi mdi-power text-primary me-2" href="{{ route('login') }}">Đăng nhập</a>
-                                        <a class="dropdown-item-icon mdi mdi-power text-primary me-2" href="{{ route('register') }}">Đăng ký</a>
+                                        <a class="dropdown-item-icon mdi mdi-power text-primary me-2" href="{{ route('login') }}">LogIn</a>
+                                        <a class="dropdown-item-icon mdi mdi-power text-primary me-2" href="{{ route('register') }}">register</a>
                                     @endif
                                 </ul>
                             </div>
@@ -194,34 +193,17 @@
 </footer>
 <div id="scroll-to-top" class="scroll-to-top"><span class="fa fa-angle-up"></span></div>
 
-<aside class="product-action-modal modal fade" id="action-WishlistModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-body">
-                <div class="product-action-view-content">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal">
-                        <i class="fa fa-times"></i>
-                    </button>
-                    <div class="modal-action-messages">
-                        <i class="fa fa-check-square-o"></i> Added to wishlist successfully!
-                    </div>
-                    <div class="modal-action-product">
-                        <div class="thumb">
-                            <img src="assets/images/shop/modal1.webp" alt="Organic Food Juice" width="466" height="320">
-                        </div>
-                        <h4 class="product-name"><a href="product-details.html">Readable content DX22</a></h4>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</aside>
-
+@isset($product)
 <aside class="product-action-modal modal fade" id="action-CartAddModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-body">
                 <div class="product-action-view-content">
+                    @php
+                            $imagePath = Str::startsWith($product->image, 'http')
+                            ? $product->image
+                            : asset('assets/images/shop/' . $product->image);
+                    @endphp
                     <button type="button" class="btn-close" data-bs-dismiss="modal">
                         <i class="fa fa-times"></i>
                     </button>
@@ -230,15 +212,20 @@
                     </div>
                     <div class="modal-action-product">
                         <div class="thumb">
-                            <img src="assets/images/shop/modal1.webp" alt="Organic Food Juice" width="466" height="320">
+                            <a class="d-block" href="{{ route('product_details', $product->id) }}">
+                                <img src="{{ $imagePath }}" width="370" height="450" alt="{{ $product->product_name }}">
+                            </a>
                         </div>
-                        <h4 class="product-name"><a href="product-details.html">Readable content DX22</a></h4>
+                        <h4 class="title">
+                            <a href="{{ route('product_details', $product->id) }}">{{ $product->product_name}}</a>
+                        </h4>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </aside>
+@endisset
 <aside class="aside-search-box-wrapper offcanvas offcanvas-top" tabindex="-1" id="AsideOffcanvasSearch" aria-labelledby="offcanvasTopLabel">
     <div class="offcanvas-header">
         <h5 class="d-none" id="offcanvasTopLabel">Aside Search</h5>
@@ -318,31 +305,34 @@
     </div>
     <div class="offcanvas-body">
         <ul class="aside-cart-product-list">
-            <li class="aside-product-list-item">
-                <a href="#/" class="remove">×</a>
-                <a href="product-details.html">
-                    <img src="assets/images/shop/cart1.webp" width="68" height="84" alt="Image">
-                    <span class="product-title">Leather Mens Slipper</span>
-                </a>
-                <span class="product-price">1 × £69.99</span>
-            </li>
-            <li class="aside-product-list-item">
-                <a href="#/" class="remove">×</a>
-                <a href="product-details.html">
-                    <img src="assets/images/shop/cart2.webp" width="68" height="84" alt="Image">
-                    <span class="product-title">Quickiin Mens shoes</span>
-                </a>
-                <span class="product-price">1 × £20.00</span>
-            </li>
+            @forelse($cartItems as $item)
+                @php
+                    $imagePath = Str::startsWith($item->product->image, 'http')? $item->product->image: asset('assets/images/shop/' .$item->product->image);
+                @endphp
+                <li class="aside-product-list-item">
+                    <a href="javascript:void(0);" class="remove"data-product-id="{{ $item->product->id ?? 0 }}">
+                        ×
+                    </a>
+                    <a href="#">
+                        <img src="{{ $imagePath }}"
+                            width="68" height="84" alt="{{ $item->product->name ?? 'Product' }}">
+                        <span class="product-title">{{ $item->product->name ?? 'Sản phẩm' }}</span>
+                    </a>
+                    <span class="product-price">{{ $item->quantity }} × ${{ $item->product->price ?? 0 }}</span>
+                </li>
+            @empty
+                <p>cart is empty</p>
+            @endforelse
         </ul>
-        <p class="cart-total"><span>Subtotal:</span><span class="amount">£89.99</span></p>
+        <p class="cart-total">
+            <span>Subtotal:</span>
+            <span class="amount">${{$subtotal}}</span>
+        </p>
         <a class="btn-total" href="/Product-Cart">View cart</a>
-        <a class="btn-total" href="product-checkout.html">Checkout</a>
+        <a class="btn-total" href="/Product-Checkout">Checkout</a>
     </div>
 </aside>
-<!--== End Aside Cart ==-->
 
-<!--== Start Aside Menu ==-->
 <aside class="off-canvas-wrapper offcanvas offcanvas-start" tabindex="-1" id="AsideOffcanvasMenu" aria-labelledby="offcanvasExampleLabel">
     <div class="offcanvas-header">
         <h1 class="d-none" id="offcanvasExampleLabel">Aside Menu</h1>
@@ -369,9 +359,7 @@
                         <li><a href="#" class="offcanvas-nav-item">Others Pages</a>
                             <ul>
                                 <li><a href="product-cart.html">Shopping Cart</a></li>
-                                <li><a href="product-checkout.html">Checkout</a></li>
-                                <li><a href="product-wishlist.html">Wishlist</a></li>
-                                <li><a href="product-compare.html">Compare</a></li>
+                                <li><a href="/Product-Checkout">Checkout</a></li>
                             </ul>
                         </li>
                     </ul>

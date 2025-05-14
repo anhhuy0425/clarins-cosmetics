@@ -10,7 +10,7 @@
         bgSource = element.data('bg-img');
       element.css('background-image', 'url(' + bgSource + ')');
     });
-    
+
     const Bgcolorcl = $("[data-bg-color]");
     Bgcolorcl.each(function (index, elem) {
       let element = $(elem),
@@ -275,3 +275,201 @@
   });
 
 })(window.jQuery);
+
+$(document).on('click', '.action-btn-wishlist', function (e) {
+    e.preventDefault();
+
+    var productId = $(this).data('product-id');
+    var button = $(this);
+
+    $.ajax({
+        url: '/wishlist',
+        method: 'POST',
+        data: {
+            product_id: productId,
+            _token: $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function(response) {
+            if (response.added) {
+                button.find('i').removeClass('fa-heart-o').addClass('fa-heart');
+                alert('Added to wishlist!');
+            } else if (response.removed) {
+                button.find('i').removeClass('fa-heart').addClass('fa-heart-o');
+                alert('Deleted to wishlist!');
+            }
+        },
+        error: function(xhr) {
+            if (xhr.status === 401) {
+                window.location.href = '/login';
+            } else {
+                alert('Lỗi');
+            }
+        }
+    });
+});
+
+
+
+$(document).on('click', '.action-btn-cart', function (e) {
+    e.preventDefault();
+
+    var productId = $(this).data('product-id');
+    var button = $(this);
+
+    $.ajax({
+        url: '/cart/add/' + productId,
+        method: 'POST',
+        data: {
+            _token: $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function(response) {
+            if (response.added) {
+                alert(response.message);
+                location.reload();
+            } else if (response.updated) {
+                alert(response.message);
+            }
+        },
+    });
+});
+
+
+document.querySelectorAll('a.remove').forEach(function (deleteLink) {
+    deleteLink.addEventListener('click', function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        var productId = deleteLink.getAttribute('data-product-id');
+
+        fetch('/cart/remove/' + productId, {
+            method: 'DELETE',
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Sản phẩm đã được xóa khỏi giỏ hàng!');
+                location.reload(); // Cập nhật lại giỏ hàng hoặc tải lại trang
+            } else {
+                alert('Có lỗi xảy ra!');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Lỗi khi xóa sản phẩm!');
+        });
+    });
+});
+
+
+let previousShippingValue = null;
+function updateShipping() {
+    const radios = document.getElementsByName('shipping');
+    let shipping = 0;
+
+
+    let isChecked = false;
+    for (const r of radios) {
+        if (r.checked) {
+            shipping = parseInt(r.value);
+            isChecked = true;
+            break;
+        }
+    }
+    if (!isChecked) {
+        return;
+    }
+    if (shipping === previousShippingValue) {
+        return;
+    }
+    previousShippingValue = shipping;
+    const totalAfterDiscount = parseFloat(document.getElementById('totalAfterDiscount').dataset.value);
+    const total = totalAfterDiscount + shipping;
+
+    document.getElementById('total').textContent = '$' + total.toFixed(2);
+    document.getElementById('shipping').innerText = '$' + previousShippingValue.toFixed(2);
+}
+
+// const userIsLoggedIn = {!! json_encode(auth()->check()) !!};
+document.addEventListener('DOMContentLoaded', function () {
+    updateShipping();
+    const addressInput = document.getElementById('address');
+    const proceedBtn = document.getElementById('proceedBtn');
+    if (proceedBtn) {
+        proceedBtn.addEventListener('click', function (e) {
+            if (previousShippingValue === null) {
+                alert("Please select an address before continuing.");
+                e.preventDefault();
+            }
+        });
+    }
+    if (!window.userIsLoggedIn) {
+        const guestModal = new bootstrap.Modal(document.getElementById('guestCheckoutModal'));
+        guestModal.show();
+    }
+    window.continueAsGuest = function () {
+        const guestModal = bootstrap.Modal.getInstance(document.getElementById('guestCheckoutModal'));
+        guestModal.hide();
+        // Có thể set flag guest để xử lý khi đặt hàng
+        window.continueAsGuestMode = true;
+    }
+    addressInput.addEventListener('blur', function () {
+        const address = this.value.toLowerCase();
+        if (address.includes('tphcm') || address.includes('hồ chí minh')) {
+            document.getElementById('radio2').checked = true;
+        } else {
+            document.getElementById('radio1').checked = true;
+        }
+        updateShipping();
+    });
+});
+
+document.getElementById('address').addEventListener('input', function () {
+    const address = this.value.toLowerCase();
+
+    if (address.includes('tphcm') || address.includes('hồ chí minh')) {
+        document.getElementById('radio2').checked = true;
+        document.getElementById('shipping_fee').value = 0;
+        updateTotalWithShipping(0);
+    } else {
+        document.getElementById('radio1').checked = true;
+        document.getElementById('shipping_fee').value = 30;
+        updateTotalWithShipping(30);
+    }
+});
+
+document.querySelector('.title').addEventListener('click', function () {
+        const paymentMethod = this.innerText.trim(); // Lấy nội dung "Cash on delivery"
+        document.getElementById('payment_method').value = paymentMethod;
+});
+
+
+document.getElementById('submitLink').addEventListener('click', function(e) {
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const address = document.getElementById('address').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    // const shipping = document.getElementById('shipping_fee').value;
+    const paymentMethod = document.querySelector('input[name="payment_method"]:checked')?.value || '';
+
+    document.getElementById('formName').value = name;
+    document.getElementById('formAddress').value = address;
+    document.getElementById('formPhone').value = phone;
+    document.getElementById('formEmail').value = email;
+    // document.getElementById('formShipping').value = shipping;
+    document.getElementById('formtotal').value = document.getElementById('totalAfterDiscount').getAttribute('data-value');
+    document.getElementById('formPaymentMethod').value = paymentMethod;
+
+    if (!phone || !address || !email) {
+        alert("Vui lòng nhập đầy đủ thông tin.");
+        return;
+    }
+
+    document.getElementById('orderForm').submit();
+});
+
+
+

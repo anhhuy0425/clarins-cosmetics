@@ -14,18 +14,14 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('voucher_id')->nullable();
             $table->string('phone');
             $table->string('email');
-            $table->datetime('shipping_time')->nullable();
             $table->string('address');
             $table->decimal('total_amount', 10, 2);
             $table->text('order_detail')->nullable();
             $table->string('payment_method');
-            $table->unsignedBigInteger('shipping_rule_id')->nullable();
             $table->timestamps();
-
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->nullable()->on('users')->onDelete('cascade');
             $table->foreign('voucher_id')->references('id')->on('vouchers')->nullOnDelete();
         });
     }
