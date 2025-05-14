@@ -109,8 +109,10 @@ class CartsController extends Controller
             foreach ($quantities as $productId => $quantity) {
                 $cartItem = Cart::where('user_id', $userId)->where('product_id', $productId)->first();
                 if ($cartItem) {
+                    $price = $cartItem->product->price;
                     $cartItem->quantity = $quantity;
-                    $cartItem->total = $quantity * $cartItem->product->price;
+                    $cartItem->product->price = $price;
+                    $cartItem->total = $quantity * $price;
                     $cartItem->save();
                 }
             }
