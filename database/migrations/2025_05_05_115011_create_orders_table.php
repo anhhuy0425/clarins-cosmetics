@@ -14,12 +14,15 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->dateTime('order_date');
-            $table->string('shipping_address');
-            $table->string('status')->default('pending');
+            $table->string('phone');
+            $table->string('email');
+            $table->string('address');
             $table->decimal('total_amount', 10, 2);
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->text('order_detail')->nullable();
+            $table->string('payment_method');
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->nullable()->on('users')->onDelete('cascade');
+            $table->foreign('voucher_id')->references('id')->on('vouchers')->nullOnDelete();
         });
     }
 
