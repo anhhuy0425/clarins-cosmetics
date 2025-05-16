@@ -22,7 +22,6 @@ return new class extends Migration
             $table->string('payment_method');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->nullable()->on('users')->onDelete('cascade');
-            $table->foreign('voucher_id')->references('id')->on('vouchers')->nullOnDelete();
         });
     }
 
