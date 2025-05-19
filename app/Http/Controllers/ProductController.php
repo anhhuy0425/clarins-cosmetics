@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Wishlist;
 use App\Models\Product;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
@@ -64,6 +65,26 @@ class ProductController extends Controller
         'query' => $query,
     ]);
 }
+
+    public function trackOrder(Request $request)
+    {
+        $order = null;
+        $error = null;
+
+        if ($request->isMethod('post')) {
+            $request->validate([
+                'phone' => 'required|string',
+            ]);
+
+            $order = Order::where('phone', $request->phone)->first();
+
+            if (!$order) {
+                $error = 'Số điện thoại không tồn tại hoặc không hợp lệ';
+            }
+        }
+
+        return view('shop.Order-tracking', compact('order', 'error'));
+    }
 
 
 }

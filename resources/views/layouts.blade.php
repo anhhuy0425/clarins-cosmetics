@@ -14,6 +14,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/favicon.webp') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/css/vendor/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/swiper-bundle.min.css') }}">
@@ -22,7 +23,6 @@
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/nice-select.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.min.css') }}">
 </head>
-
 <body>
     <div class="wrapper">
         <header class="header-area sticky-header">
@@ -58,6 +58,8 @@
                                                 <li><a href="/Product-Cart">Shopping Cart</a></li>
                                                 <li><a href="/Product-Checkout">Checkout</a></li>
                                                 <li><a href="/wishlistShow">Wishlist</a></li>
+                                                <li><a href="/track-order">Order tracking</a></li>
+
                                             </ul>
                                         </li>
                                     </ul>
@@ -327,6 +329,29 @@
     </div>
 </aside>
 </div>
+@if (session('success'))
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 9999">
+        <div id="successToast" class="toast align-items-center text-bg-success border-0 show" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    {{ session('success') }}
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tự động ẩn sau 5 giây
+        setTimeout(() => {
+            const toast = document.getElementById('successToast');
+            if (toast) {
+                bootstrap.Toast.getOrCreateInstance(toast).hide();
+            }
+        }, 5000);
+    </script>
+@endif
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="{{ asset('assets/js/vendor/modernizr-3.11.7.min.js') }}"></script>
 <script src="{{ asset('assets/js/vendor/jquery-3.6.0.min.js') }}"></script>
 <script src="{{ asset('assets/js/vendor/jquery-migrate-3.3.2.min.js') }}"></script>
