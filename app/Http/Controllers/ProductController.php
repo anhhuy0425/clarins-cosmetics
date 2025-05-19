@@ -47,6 +47,23 @@ class ProductController extends Controller
 
     return response()->json(['success' => true, 'added' => true, 'product_id' => $productId]);
     }
-    
+
+
+
+    public function search(Request $request)
+{
+    $query = $request->input('query');
+    $product_search = Product::query();
+    if ($query) {
+        $product_search = $product_search->where('product_name', 'like', '%' . $query . '%');
+    }
+
+     $product_search = $product_search->get();
+    return view('shop.product-search', [
+        'product_search' => $product_search,
+        'query' => $query,
+    ]);
+}
+
 
 }
