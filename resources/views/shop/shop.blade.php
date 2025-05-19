@@ -127,10 +127,7 @@
                                     </a>
                                     <span class="flag-new">new</span>
                                     <div class="product-action">
-                                        <button type="button" class="product-action-btn action-btn-quick-view" data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
-                                            <i class="fa fa-expand"></i>
-                                        </button>
-                                        <button type="button" class="product-action-btn action-btn-cart" data-product-id="{{ $product->id }}" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
+                                        <button type="button" class="product-action-btn action-btn-cart" data-product-id="{{ $product->id }}">
                                             <span>Add to cart</span>
                                         </button>
                                         <button type="button" class="product-action-btn action-btn-wishlist" data-product-id="{{ $product->id }}">

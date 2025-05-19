@@ -11,18 +11,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="keywords" content="bootstrap, ecommerce, ecommerce html, beauty, cosmetic shop, beauty products, cosmetic, beauty shop, cosmetic store, shop, beauty store, spa, cosmetic, cosmetics, beauty salon" />
     <meta name="author" content="codecarnival" />
-    <link rel="shortcut icon" type="image/x-icon" href="./assets/images/favicon.webp">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/favicon.webp') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./assets/css/vendor/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/plugins/swiper-bundle.min.css">
-    <link rel="stylesheet" href="assets/css/plugins/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/css/plugins/fancybox.min.css">
-    <link rel="stylesheet" href="assets/css/plugins/nice-select.css">
-    <link rel="stylesheet" href="./assets/css/style.min.css">
-
+    <link rel="stylesheet" href="{{ asset('assets/css/vendor/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/plugins/swiper-bundle.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/plugins/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/plugins/fancybox.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/plugins/nice-select.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.min.css') }}">
 </head>
+
 <body>
     <div class="wrapper">
         <header class="header-area sticky-header">
@@ -326,13 +326,13 @@
     </div>
 </aside>
 </div>
-<script src="./assets/js/vendor/modernizr-3.11.7.min.js"></script>
-<script src="./assets/js/vendor/jquery-3.6.0.min.js"></script>
-<script src="./assets/js/vendor/jquery-migrate-3.3.2.min.js"></script>
-<script src="./assets/js/vendor/bootstrap.bundle.min.js"></script>
-<script src="./assets/js/plugins/swiper-bundle.min.js"></script>
-<script src="./assets/js/plugins/fancybox.min.js"></script>
-<script src="./assets/js/plugins/jquery.nice-select.min.js"></script>
-<script src="./assets/js/main.js"></script>
+<script src="{{ asset('assets/js/vendor/modernizr-3.11.7.min.js') }}"></script>
+<script src="{{ asset('assets/js/vendor/jquery-3.6.0.min.js') }}"></script>
+<script src="{{ asset('assets/js/vendor/jquery-migrate-3.3.2.min.js') }}"></script>
+<script src="{{ asset('assets/js/vendor/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('assets/js/plugins/swiper-bundle.min.js') }}"></script>
+<script src="{{ asset('assets/js/plugins/fancybox.min.js') }}"></script>
+<script src="{{ asset('assets/js/plugins/jquery.nice-select.min.js') }}"></script>
+<script src="{{ asset('assets/js/main.js') }}"></script>
 </body>
 </html>
