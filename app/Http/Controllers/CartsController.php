@@ -27,6 +27,8 @@ class CartsController extends Controller
                     'message' => 'Số lượng sản phẩm đã được cập nhật trong giỏ hàng.'
                 ]);
             } else {
+                $price = $product->price;
+                $quantity = 1;
                 Cart::create([
                     'user_id' => auth()->id(),
                     'product_id' => $product->id,

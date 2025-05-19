@@ -36,4 +36,14 @@ class WishlistController extends Controller
 
     return response()->json(['success' => true, 'added' => true, 'product_id' => $productId]);
     }
+
+
+    public function wishlistShow()
+    {
+        $wishlists = Wishlist::with('product')
+            ->where('user_id', Auth::id())
+            ->get();
+
+        return view('shop.product-wishlist', compact('wishlists'));
+    }
 }

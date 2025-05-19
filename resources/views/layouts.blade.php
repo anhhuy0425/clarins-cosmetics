@@ -57,6 +57,7 @@
                                             <ul>
                                                 <li><a href="/Product-Cart">Shopping Cart</a></li>
                                                 <li><a href="/Product-Checkout">Checkout</a></li>
+                                                <li><a href="/wishlistShow">Wishlist</a></li>
                                             </ul>
                                         </li>
                                     </ul>
