@@ -77,7 +77,7 @@ class AuthController extends Controller
     {
         return view('account_login');
     }
-    
+
     public function login(Request $request)
     {
         $request->validate([
@@ -105,11 +105,12 @@ class AuthController extends Controller
                 session()->forget('cart');
             }
 
-            // ✅ Chuyển trang theo vai trò
-            if (auth()->user()->is_admin == true)
-                return redirect('/admin')->with('success', 'Đăng nhập thành công!');
-            else
-                return redirect('/')->with('success', 'Đăng nhập thành công!');
+            $user = auth()->user();
+                if ($user->role === 'admin') {
+                    return redirect()->route('ProductAdmin');
+                } else {
+                    return redirect()->route('home');
+                }
         }
 
         return back()->withErrors([
