@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use App\Models\Cart;
 use App\Models\Product;
+use App\Models\Category;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -44,6 +45,7 @@ class AppServiceProvider extends ServiceProvider
                 }
 
             }
+            $categories = Category::all();
             $discount = session('discount', 0);
             $voucherCode = session('voucher_code');
             $voucher = \App\Models\Voucher::where('code', $voucherCode)->first();
@@ -59,6 +61,7 @@ class AppServiceProvider extends ServiceProvider
                 'subtotal' => $subtotal,
                 'discount' => $discount,
                 'totalAfterDiscount' => $totalAfterDiscount,
+                'categories' => $categories,
             ]);
         });
     }

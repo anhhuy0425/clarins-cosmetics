@@ -31,7 +31,7 @@
                     <div class="col-5 col-sm-6 col-lg-3">
                         <div class="header-logo">
                             <a href="/">
-                                <img class="logo-main" src="assets/images/logo.webp" width="95" height="68" alt="Logo" />
+                                <img class="logo-main" src="{{asset('assets/images/logo.svg')}}" width="95" height="68" alt="Logo')}}" />
                             </a>
                         </div>
                     </div>
@@ -45,12 +45,11 @@
                                     <ul class="submenu-nav-mega">
                                         <li><a href="#/" class="mega-title">Product</a>
                                             <ul>
-                                                <li><a href="#">FACE</a></li>
-                                                <li><a href="#">BODY</a></li>
-                                                <li><a href="#">SUNSCREEN</a></li>
-                                                <li><a href="#">HAIR</a></li>
-                                                <li><a href="#">MAKEUP</a></li>
-                                                <li><a href="#">PERFUMES</a></li>
+                                                @foreach ($categories as $cat)
+                                                    <li>
+                                                        <a href="{{ url('/products/category/'.$cat->id) }}">{{ $cat->name }}</a>
+                                                    </li>
+                                                @endforeach
                                             </ul>
                                         </li>
                                         <li><a href="#/" class="mega-title">Others Pages</a>
@@ -153,7 +152,7 @@
                     <div class="widget-item">
                         <div class="widget-about">
                             <a class="widget-logo" href="/">
-                                <img src="assets/images/logo.webp" width="95" height="68" alt="Logo">
+                                <img src="assets/images/logo.svg" width="95" height="68" alt="Logo">
                             </a>
                             <p class="desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been.</p>
                         </div>

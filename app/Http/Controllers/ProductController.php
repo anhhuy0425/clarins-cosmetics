@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Wishlist;
 use App\Models\Product;
 use App\Models\Order;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
@@ -86,5 +87,25 @@ class ProductController extends Controller
         return view('shop.Order-tracking', compact('order', 'error'));
     }
 
+    public function filterByCategory($categoryId)
+    {
+        $product_filter = Product::where('category_id', $categoryId)->get();
+        $category = Category::find($categoryId);
+        return view('shop.filterByCategory', compact('product_filter', 'category'));
+    }
+    public function filter(Request $request)
+    {
+        $categoryId = $request->category_id;
+        $categories = Category::all();
+        $query = Product::query();
+
+        if ($categoryId) {
+            $query->where('category_id', $categoryId);
+        }
+
+        $product_filter = $query->get();
+
+        return view('shop.filterByCategory', compact('product_filter', 'categories'));
+    }
 
 }

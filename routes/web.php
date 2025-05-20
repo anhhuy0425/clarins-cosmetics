@@ -20,8 +20,11 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/Shop', [ProductController::class, 'index'])->name('shop.index');
 Route::match(['get', 'post'], '/track-order', [ProductController::class, 'trackOrder'])->name('order.track');
 
+
 Route::get('/product/{id}', [ProductController::class, 'product_details'])->name('product_details');
 Route::get('/search-products', [ProductController::class, 'search'])->name('products.search');
+Route::get('/products/category/{id}', [ProductController::class, 'filterByCategory']);
+
 
 Route::post('/wishlist', [WishlistController::class, 'toggleWishlist']);
 Route::get('/wishlistShow', [WishlistController::class, 'wishlistShow']);
